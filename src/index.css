@@ -1,0 +1,111 @@
+@import "tailwindcss";
+@import "./styles/tokens.css";
+
+@theme {
+  --breakpoint-*: initial;
+  --breakpoint-md: 744px;
+  --breakpoint-lg: 1200px;
+}
+
+@theme inline {
+  --font-sans: "DM Sans Variable", "DM Sans", ui-sans-serif, system-ui, sans-serif;
+
+  --color-surface-page: var(--surface-page);
+  --color-surface-default: var(--surface-default);
+  --color-surface-subtle: var(--surface-subtle);
+  --color-surface-raised: var(--surface-raised);
+  --color-surface-sunken: var(--surface-sunken);
+  --color-surface-action: var(--surface-action);
+  --color-surface-action-secondary: var(--surface-action-secondary);
+  --color-surface-action-hover: var(--surface-action-hover);
+  --color-surface-action-pressed: var(--surface-action-pressed);
+  --color-surface-disabled: var(--surface-disabled);
+  --color-surface-inverse: var(--surface-inverse);
+  --color-surface-contrast: var(--surface-contrast-section);
+
+  --color-border-default: var(--border-default);
+  --color-border-subtle: var(--border-subtle);
+  --color-border-strong: var(--border-strong);
+  --color-border-action: var(--border-action);
+  --color-border-focus: var(--border-focus);
+  --color-border-disabled: var(--border-disabled);
+  --color-border-inverse: var(--border-inverse);
+  --color-border-glass: var(--border-glass);
+
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-tertiary: var(--text-tertiary);
+  --color-text-action: var(--text-action);
+  --color-text-action-secondary: var(--text-action-secondary);
+  --color-text-action-hover: var(--text-action-hover);
+  --color-text-inverse: var(--text-inverse);
+  --color-text-disabled: var(--text-disabled);
+
+  --color-icon-action: var(--icon-action);
+  --color-icon-action-secondary: var(--icon-action-secondary);
+
+  /* shadcn/ui variable names, mapped to the Figma tokens */
+  --color-background: var(--surface-page);
+  --color-foreground: var(--text-primary);
+  --color-primary: var(--surface-action);
+  --color-primary-foreground: var(--text-inverse);
+  --color-border: var(--border-default);
+  --color-ring: var(--border-focus);
+
+  --spacing-2xs: 4px;
+  --spacing-xs: 8px;
+  --spacing-sm: 12px;
+  --spacing-md: 16px;
+  --spacing-lg: 20px;
+  --spacing-xl: 24px;
+  --spacing-2xl: var(--space-2xl);
+  --spacing-3xl: var(--space-3xl);
+  --spacing-4xl: var(--space-4xl);
+  --spacing-5xl: var(--space-5xl);
+  --spacing-6xl: var(--space-6xl);
+  --spacing-7xl: var(--space-7xl);
+  --spacing-8xl: var(--space-8xl);
+  --spacing-9xl: var(--space-9xl);
+  --spacing-container: var(--container-large);
+  --spacing-container-md: var(--container-medium);
+  --spacing-container-sm: var(--container-small);
+  --spacing-section: var(--section-large);
+  --spacing-section-md: var(--section-medium);
+  --spacing-section-sm: var(--section-small);
+
+  --radius-sm: var(--radius-small);
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+}
+
+@utility type-h1 { font-size: var(--h1-size); line-height: var(--h1-line); }
+@utility type-h2 { font-size: var(--h2-size); line-height: var(--h2-line); }
+@utility type-h3 { font-size: var(--h3-size); line-height: var(--h3-line); }
+@utility type-h4 { font-size: var(--h4-size); line-height: var(--h4-line); }
+@utility type-h5 { font-size: var(--h5-size); line-height: var(--h5-line); }
+@utility type-h6 { font-size: var(--h6-size); line-height: var(--h6-line); }
+@utility type-lg { font-size: var(--p-large-size); line-height: var(--p-large-line); }
+@utility type-md { font-size: var(--p-medium-size); line-height: var(--p-medium-line); }
+@utility type-sm { font-size: var(--p-small-size); line-height: var(--p-small-line); }
+@utility type-caption { font-size: 12px; line-height: 16px; }
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    text-rendering: geometricPrecision;
+  }
+  body {
+    margin: 0;
+    background: var(--surface-page);
+    color: var(--text-primary);
+    font-family: var(--font-sans);
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: 500;
+  }
+  :focus-visible {
+    outline: 2px solid var(--border-focus);
+    outline-offset: 2px;
+  }
+}

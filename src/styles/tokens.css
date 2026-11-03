@@ -1,0 +1,148 @@
+/*
+  Semantic tokens from the MONARCO Figma "Style Guide" (08 Responsive Behavior, 03B Color Semantic).
+  Default = Mobile mode; media queries switch to Tablet and Desktop modes.
+  Figma defines no numeric breakpoints: 744 and 1200 are an implementation choice.
+*/
+:root {
+  /* Color Semantic / Dark (the only mode the page frames use) */
+  --surface-page: #12110f;
+  --surface-default: #1d1b18;
+  --surface-subtle: #1d1b18;
+  --surface-raised: #2d2a25;
+  --surface-sunken: #2d2a25;
+  --surface-action: #c99f54;
+  --surface-action-secondary: #765226;
+  --surface-action-hover: #dab66e;
+  --surface-action-pressed: #b4863f;
+  --surface-disabled: #2d2a25;
+  --surface-inverse: #faf8f2;
+  --surface-contrast-section: #e5ded1;
+
+  --border-default: #49443c;
+  --border-subtle: #80786d;
+  --border-strong: #c9c0b1;
+  --border-action: #c99f54;
+  --border-focus: #dab66e;
+  --border-disabled: #80786d;
+  --border-inverse: #2d2a25;
+  --border-contrast-section: #80786d;
+  --border-glass: #a79d8d;
+
+  --text-primary: #faf8f2;
+  --text-secondary: #e5ded1;
+  --text-tertiary: #49443c;
+  --text-action: #c99f54;
+  --text-action-secondary: #765226;
+  --text-action-hover: #dab66e;
+  --text-inverse: #2d2a25;
+  --text-disabled: #a79d8d;
+  --text-on-action: #12110f;
+
+  --icon-primary: #faf8f2;
+  --icon-secondary: #c9c0b1;
+  --icon-action: #c99f54;
+  --icon-action-secondary: #765226;
+  --icon-inverse: #1d1b18;
+  --icon-on-action: #12110f;
+
+  /* Spacing Semantic / Mobile */
+  --container-large: 16px;
+  --container-medium: 12px;
+  --container-small: 8px;
+  --section-large: 40px;
+  --section-medium: 32px;
+  --section-small: 24px;
+  --space-2xl: 28px;
+  --space-3xl: 32px;
+  --space-4xl: 40px;
+  --space-5xl: 48px;
+  --space-6xl: 64px;
+  --space-7xl: 80px;
+  --space-8xl: 96px;
+  --space-9xl: 112px;
+
+  /* Radius Semantic / Mobile */
+  --radius-small: 4px;
+
+  /* Typography Semantic / Mobile: size, line height */
+  --h1-size: 40px;
+  --h1-line: 48px;
+  --h2-size: 32px;
+  --h2-line: 38px;
+  --h3-size: 28px;
+  --h3-line: 34px;
+  --h4-size: 24px;
+  --h4-line: 28px;
+  --h5-size: 20px;
+  --h5-line: 24px;
+  --h6-size: 18px;
+  --h6-line: 20px;
+  --p-large-size: 16px;
+  --p-large-line: 24px;
+  --p-medium-size: 14px;
+  --p-medium-line: 18px;
+  --p-small-size: 12px;
+  --p-small-line: 16px;
+}
+
+@media (min-width: 744px) {
+  :root {
+    --container-large: 24px;
+    --container-medium: 16px;
+    --section-large: 64px;
+    --section-medium: 48px;
+    --section-small: 32px;
+
+    --h1-size: 48px;
+    --h1-line: 56px;
+    --h2-size: 40px;
+    --h2-line: 40px;
+    --h3-size: 32px;
+    --h3-line: 38px;
+    --h4-size: 28px;
+    --h4-line: 34px;
+    --h5-size: 24px;
+    --h5-line: 28px;
+    --h6-size: 20px;
+    --h6-line: 24px;
+    --p-large-size: 18px;
+    --p-large-line: 24px;
+    --p-medium-size: 16px;
+    --p-medium-line: 24px;
+    --p-small-size: 14px;
+    --p-small-line: 18px;
+  }
+}
+
+@media (min-width: 1200px) {
+  :root {
+    --container-large: 40px;
+    --container-medium: 32px;
+    --container-small: 24px;
+    --section-large: 96px;
+    --section-medium: 64px;
+    --section-small: 40px;
+    --space-2xl: 32px;
+    --space-3xl: 40px;
+    --space-4xl: 48px;
+    --space-5xl: 64px;
+    --space-6xl: 80px;
+    --space-7xl: 96px;
+    --space-8xl: 112px;
+    --space-9xl: 128px;
+    --radius-small: 6px;
+
+    --h1-size: 60px;
+    --h1-line: 72px;
+    --h2-size: 48px;
+    --h2-line: 56px;
+    --h3-size: 40px;
+    --h3-line: 56px;
+    --h4-size: 28px;
+    --h4-line: 38px;
+    --h5-size: 24px;
+    --h5-line: 28px;
+    --h6-size: 20px;
+    --h6-line: 28px;
+  }
+}
