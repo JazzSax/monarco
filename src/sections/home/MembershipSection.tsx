@@ -2,6 +2,7 @@ import { BenefitItem } from "@/components/cards"
 import { ArrowButton, TextLink } from "@/components/cta"
 import { Backdrop, Container, Section } from "@/components/layout"
 import { Eyebrow } from "@/components/typography"
+import { asset } from "@/lib/assets"
 
 const BENEFITS = [
   "Continued Recovery M.I.",
@@ -54,13 +55,13 @@ function Benefits() {
 }
 
 function Interior({ className }: { className: string }) {
-  return <img src="/assets/house-interior.webp" alt="" className={`rounded-lg object-cover ${className}`} />
+  return <img src={asset("assets/house-interior.webp")} alt="" className={`rounded-lg object-cover ${className}`} />
 }
 
 export function MembershipSection() {
   return (
     <Section className="bg-surface-default">
-      <Backdrop src="/assets/marble.webp" overlay="rgb(29 27 24 / 0.8)" />
+      <Backdrop src={asset("assets/marble.webp")} overlay="rgb(29 27 24 / 0.8)" />
       <Container className="flex flex-col gap-md lg:flex-row lg:gap-2xl">
         {/* Figma's order changes by breakpoint: offer, image, benefits on mobile and desktop; two cards then image on tablet. */}
         <div className="contents md:flex md:gap-md lg:contents">

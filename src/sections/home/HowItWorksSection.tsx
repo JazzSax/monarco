@@ -1,6 +1,7 @@
 import { ArrowButton } from "@/components/cta"
 import { Section, Split, SplitBody, SplitIntro } from "@/components/layout"
 import { BodyLarge, Eyebrow, SectionHeading } from "@/components/typography"
+import { asset } from "@/lib/assets"
 
 const STEPS = [
   { n: "01", title: "Face Read", body: "Complete your private Recovery M.I. read.", image: "phone-face" },
@@ -37,7 +38,7 @@ export function HowItWorksSection() {
                 </div>
               </div>
               <div className="relative h-[300px] overflow-hidden rounded-lg bg-surface-contrast">
-                <img src={`/assets/${step.image}.webp`} alt="" className="absolute top-[-36px] left-1/2 lg:top-[-31px] h-[430px] w-[322px] max-w-none -translate-x-1/2" />
+                <img src={asset(`assets/${step.image}.webp`)} alt="" className="absolute top-[-36px] left-1/2 lg:top-[-31px] h-[430px] w-[322px] max-w-none -translate-x-1/2" />
               </div>
             </article>
           ))}

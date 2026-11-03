@@ -4,6 +4,7 @@ import { IconBadge } from "@/components/cards"
 import { ArrowButton } from "@/components/cta"
 import { Backdrop, Container, Section } from "@/components/layout"
 import { Eyebrow } from "@/components/typography"
+import { asset } from "@/lib/assets"
 
 const SPECS: { icon: ReactNode; lines: string[] }[] = [
   { icon: <Cpu aria-hidden />, lines: ["122 LEDs", "488 chips"] },
@@ -21,7 +22,7 @@ const FINISHES = [
 export function SolisSection() {
   return (
     <Section id="solis" className="bg-surface-default">
-      <Backdrop src="/assets/solis-bg.webp" overlay="linear-gradient(90deg, rgb(29 27 24 / 0.8) 0%, rgb(29 27 24 / 0.6) 100%)" />
+      <Backdrop src={asset("assets/solis-bg.webp")} overlay="linear-gradient(90deg, rgb(29 27 24 / 0.8) 0%, rgb(29 27 24 / 0.6) 100%)" />
       <Container className="flex flex-col gap-5xl lg:flex-row lg:justify-between">
         <div className="flex flex-col gap-3xl lg:w-[553px]">
           <div className="flex flex-col gap-xl md:gap-3xl">
@@ -60,7 +61,7 @@ export function SolisSection() {
         <ul className="flex gap-xs md:gap-md lg:w-[604px] lg:gap-2xl lg:self-center">
           {FINISHES.map((finish) => (
             <li key={finish.name} className="min-w-0 flex-1 overflow-hidden rounded-lg border border-border-glass/25 lg:w-[180px] lg:flex-none">
-              <img src={`/assets/${finish.image}.webp`} alt="" className="h-[112px] w-full object-cover md:h-[219px] lg:h-[200px]" />
+              <img src={asset(`assets/${finish.image}.webp`)} alt="" className="h-[112px] w-full object-cover md:h-[219px] lg:h-[200px]" />
               <div className="flex flex-col items-center gap-2xs bg-surface-default px-md py-sm text-center">
                 <p className="type-md font-medium text-text-primary md:type-lg">{finish.name}</p>
                 <p className="type-sm text-text-secondary">{finish.caption}</p>

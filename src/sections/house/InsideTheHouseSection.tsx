@@ -1,6 +1,7 @@
 import { ArrowButton } from "@/components/cta"
 import { Section, Split, SplitBody, SplitIntro } from "@/components/layout"
 import { BodyLarge, Eyebrow, SectionHeading } from "@/components/typography"
+import { asset } from "@/lib/assets"
 
 export function InsideTheHouseSection() {
   return (
@@ -21,7 +22,7 @@ export function InsideTheHouseSection() {
         </SplitIntro>
         <SplitBody className="relative h-[258px] overflow-hidden rounded-lg bg-surface-contrast md:h-[500px] lg:h-[441px]">
           <img
-            src="/assets/dashboard.webp"
+            src={asset("assets/dashboard.webp")}
             alt="Recovery dashboard preview"
             className="absolute top-md left-md h-[246px] w-[353px] max-w-none rounded-md md:h-[493px] md:w-[707px] lg:top-xl lg:left-xl lg:h-[590px] lg:w-[830px]"
           />

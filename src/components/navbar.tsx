@@ -5,6 +5,7 @@ import { Container } from "@/components/layout"
 import { ArrowButton } from "@/components/cta"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetClose, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
+import { asset } from "@/lib/assets"
 import { cn } from "@/lib/utils"
 
 const LINKS = [
@@ -52,7 +53,7 @@ export function Navbar() {
         <Container className="flex items-center justify-between">
           <nav aria-label="Main" className="flex items-center gap-2xl">
             <Link to="/" aria-label="Monarco home" className="block h-10 md:h-12">
-              <img src="/assets/logo-primary.webp" alt="" className="h-full w-auto" />
+              <img src={asset("assets/logo-primary.webp")} alt="" className="h-full w-auto" />
             </Link>
             <NavItems className="hidden items-center lg:flex" itemClassName="px-xs" />
           </nav>

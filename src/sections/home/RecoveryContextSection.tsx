@@ -1,4 +1,5 @@
 import { Backdrop, Section, Split, SplitBody, SplitIntro } from "@/components/layout"
+import { asset } from "@/lib/assets"
 import { cn } from "@/lib/utils"
 
 const SCENARIOS = [
@@ -13,7 +14,7 @@ export function RecoveryContextSection() {
   return (
     <Section className="bg-surface-default">
       <Backdrop
-        src="/assets/context-bg.webp"
+        src={asset("assets/context-bg.webp")}
         overlay="linear-gradient(90deg, #1d1b18 0%, rgb(29 27 24 / 0.5) 100%)"
       />
       <Split className="lg:items-center">
@@ -30,7 +31,7 @@ export function RecoveryContextSection() {
                 i === 0 ? "border-border-action" : "border-border-glass/50",
               )}
             >
-              <img src={`/assets/${s.image}.webp`} alt="" className="h-[120px] w-full object-cover lg:aspect-square lg:h-auto" />
+              <img src={asset(`assets/${s.image}.webp`)} alt="" className="h-[120px] w-full object-cover lg:aspect-square lg:h-auto" />
               <div className="flex flex-col items-center gap-xs bg-surface-default px-md py-sm md:px-sm lg:gap-2xs lg:px-md text-center text-text-primary">
                 <p className="type-md whitespace-nowrap">{s.label}</p>
                 <p className="type-lg font-medium md:type-h6">{s.score}</p>

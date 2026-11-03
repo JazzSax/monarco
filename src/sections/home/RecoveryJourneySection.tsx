@@ -1,5 +1,6 @@
 import { SandCard } from "@/components/cards"
 import { Backdrop, Section, Split, SplitBody, SplitIntro } from "@/components/layout"
+import { asset } from "@/lib/assets"
 
 const STEPS = [
   { n: "01", title: "Read", body: "Recovery M.I. Understand your current recovery." },
@@ -11,7 +12,7 @@ const STEPS = [
 export function RecoveryJourneySection() {
   return (
     <Section className="bg-surface-default shadow-[inset_0_1px_0_var(--border-default),inset_0_-1px_0_var(--border-default)]">
-      <Backdrop src="/assets/marble.webp" overlay="rgb(29 27 24 / 0.8)" />
+      <Backdrop src={asset("assets/marble.webp")} overlay="rgb(29 27 24 / 0.8)" />
       <Split>
         <SplitIntro className="gap-sm">
           <h2 className="type-h2 text-text-primary lg:w-[296px]">Read. Restore. Return.</h2>

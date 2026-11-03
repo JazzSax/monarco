@@ -1,12 +1,13 @@
 import { FileImage, ScanEye, UserRoundCheck } from "lucide-react"
 import { TrustPill } from "@/components/cards"
 import { ArrowButton, TextLink } from "@/components/cta"
+import { asset } from "@/lib/assets"
 import { HeroSection } from "@/sections/shared/HeroSection"
 
 export function HomeHero() {
   return (
     <HeroSection
-      image="/assets/hero-home.webp"
+      image={asset("assets/hero-home.webp")}
       overlay="linear-gradient(90deg, #1d1b18 0%, rgb(29 27 24 / 0.5) 45%, rgb(29 27 24 / 0) 100%)"
       bodyClassName="lg:w-[400px]"
       eyebrow="RECOVERY M.I."

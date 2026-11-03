@@ -1,11 +1,12 @@
 import { ArrowButton, TextLink } from "@/components/cta"
 import { Backdrop, Container, Section } from "@/components/layout"
 import { Eyebrow } from "@/components/typography"
+import { asset } from "@/lib/assets"
 
 export function FinalBrandCloseSection() {
   return (
     <Section className="bg-surface-default shadow-[inset_0_1px_0_var(--border-default)]">
-      <Backdrop src="/assets/disconnect.webp" overlay="linear-gradient(90deg, #1d1b18 0%, rgb(29 27 24 / 0.5) 45%, rgb(29 27 24 / 0) 100%)" />
+      <Backdrop src={asset("assets/disconnect.webp")} overlay="linear-gradient(90deg, #1d1b18 0%, rgb(29 27 24 / 0.5) 45%, rgb(29 27 24 / 0) 100%)" />
       <Container>
         <div className="flex flex-col gap-3xl md:w-[429px] lg:w-[552px]">
           <div>

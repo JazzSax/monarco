@@ -1,5 +1,6 @@
 import { Container } from "@/components/layout"
 import { ScanReveal } from "@/components/scan-reveal"
+import { asset } from "@/lib/assets"
 
 function RevealCopy({ title, lines }: { title: string; lines: [string, string] }) {
   return (
@@ -19,7 +20,7 @@ function RevealCopy({ title, lines }: { title: string; lines: [string, string] }
 export function MirrorRevealSection() {
   return (
     <section className="relative flex h-[300px] flex-col justify-center overflow-hidden md:h-[500px]">
-      <ScanReveal before="/assets/reveal-before.webp" after="/assets/reveal-after.webp" />
+      <ScanReveal before={asset("assets/reveal-before.webp")} after={asset("assets/reveal-after.webp")} />
       {/* Figma's side fade: opaque at both edges, clear over the face. */}
       <div
         className="pointer-events-none absolute inset-0 z-[5]"

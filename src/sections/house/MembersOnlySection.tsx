@@ -2,6 +2,7 @@ import { Link } from "react-router-dom"
 import { ArrowButton } from "@/components/cta"
 import { Backdrop, Section, Split, SplitBody, SplitIntro } from "@/components/layout"
 import { BodyLarge, Eyebrow, SectionHeading } from "@/components/typography"
+import { asset } from "@/lib/assets"
 
 export function MembersOnlySection() {
   return (
@@ -20,7 +21,7 @@ export function MembersOnlySection() {
           </div>
         </SplitIntro>
         <SplitBody className="relative flex h-[358px] items-end justify-end overflow-hidden rounded-lg p-md md:h-[392px] lg:h-[441px] lg:p-xl">
-          <Backdrop src="/assets/caviar-house.webp" overlay="rgb(29 27 24 / 0.25)" />
+          <Backdrop src={asset("assets/caviar-house.webp")} overlay="rgb(29 27 24 / 0.25)" />
           <div className="relative flex w-full flex-col gap-xl rounded-md bg-surface-sunken p-md md:w-[320px] lg:w-[370px] lg:p-xl">
             <div className="flex flex-col gap-sm">
               <div className="flex flex-col gap-xs">

@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom"
 import { Backdrop, Container, Rule } from "@/components/layout"
+import { asset } from "@/lib/assets"
 
 const COLUMNS = [
   { title: "Explore", links: ["The House", "Rituals", "Solis", "Our House", "Men of Monarco"] },
@@ -29,12 +30,12 @@ function LinkedIn() {
 export function Footer() {
   return (
     <footer className="relative overflow-hidden bg-surface-default py-section-sm text-text-secondary md:pb-xl lg:pb-section-sm">
-      <Backdrop src="/assets/footer-rock.webp" imgClassName="object-bottom opacity-40" />
+      <Backdrop src={asset("assets/footer-rock.webp")} imgClassName="object-bottom opacity-40" />
       <Container className="flex flex-col gap-md lg:gap-xl">
         <div className="flex flex-col gap-3xl md:gap-5xl lg:flex-row">
           <Link to="/" aria-label="Monarco home" className="relative block h-[85.75px] md:h-20 lg:h-[120px] lg:w-[668px] lg:shrink-0">
             <img
-              src="/assets/logo-wide.webp"
+              src={asset("assets/logo-wide.webp")}
               alt=""
               className="absolute top-[-13px] left-[-17px] h-[112px] w-[331px] max-w-none md:top-[-16px] lg:top-0 lg:h-[120px] lg:w-[355px]"
             />

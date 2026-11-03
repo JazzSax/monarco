@@ -2,6 +2,7 @@ import { ArrowButton } from "@/components/cta"
 import { Section, Split, SplitBody, SplitIntro } from "@/components/layout"
 import { MetricsList } from "@/components/metrics"
 import { BodyLarge, Eyebrow, SectionHeading } from "@/components/typography"
+import { asset } from "@/lib/assets"
 
 export function RecoveryReadSection() {
   return (
@@ -34,7 +35,7 @@ export function RecoveryReadSection() {
           </div>
 
           <div className="relative flex h-[358px] flex-col justify-end overflow-hidden rounded-lg p-md md:h-auto md:flex-1">
-            <img src="/assets/eye.webp" alt="" className="absolute inset-0 size-full object-cover" />
+            <img src={asset("assets/eye.webp")} alt="" className="absolute inset-0 size-full object-cover" />
             <div className="relative flex flex-col gap-xs rounded-md bg-surface-contrast p-md">
               <p className="type-h5 font-medium text-text-inverse md:type-h6 lg:type-h5">This is Where You are Today</p>
               <p className="type-sm text-text-tertiary">Your facial signals and context reveal a clearer understanding of your current recovery state.</p>

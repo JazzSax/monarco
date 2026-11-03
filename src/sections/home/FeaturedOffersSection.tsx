@@ -2,6 +2,7 @@ import { LockKeyhole } from "lucide-react"
 import { ArrowButton, TextLink } from "@/components/cta"
 import { Backdrop, Container, Section } from "@/components/layout"
 import { Eyebrow } from "@/components/typography"
+import { asset } from "@/lib/assets"
 
 const CARD = "relative flex flex-col justify-center lg:flex-1 overflow-hidden rounded-lg p-md md:h-[391.5px] md:p-xl lg:h-auto lg:px-3xl lg:py-5xl"
 
@@ -10,7 +11,7 @@ export function FeaturedOffersSection() {
     <Section className="bg-surface-contrast">
       <Container className="flex flex-col gap-md lg:flex-row lg:gap-2xl">
         <article className={CARD}>
-          <Backdrop src="/assets/caviar-home.webp" overlay="linear-gradient(90deg, #1d1b18 0%, rgb(29 27 24 / 0.5) 45%, rgb(29 27 24 / 0) 100%)" />
+          <Backdrop src={asset("assets/caviar-home.webp")} overlay="linear-gradient(90deg, #1d1b18 0%, rgb(29 27 24 / 0.5) 45%, rgb(29 27 24 / 0) 100%)" />
           <div className="relative flex w-[252px] flex-col gap-3xl md:w-[277px] lg:w-[368px]">
             <div className="flex flex-col gap-md">
               <div className="flex flex-col gap-sm">
@@ -32,7 +33,7 @@ export function FeaturedOffersSection() {
         </article>
 
         <article className={CARD}>
-          <Backdrop src="/assets/disconnect.webp" overlay="linear-gradient(90deg, rgb(29 27 24 / 0.55) 0%, rgb(29 27 24 / 0.6) 50%, rgb(29 27 24 / 0.5) 100%)" />
+          <Backdrop src={asset("assets/disconnect.webp")} overlay="linear-gradient(90deg, rgb(29 27 24 / 0.55) 0%, rgb(29 27 24 / 0.6) 50%, rgb(29 27 24 / 0.5) 100%)" />
           <div className="relative flex flex-col gap-3xl">
             <div className="flex flex-col gap-md md:gap-xl lg:gap-lg">
               <div className="flex flex-col gap-sm lg:gap-lg">

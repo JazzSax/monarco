@@ -3,6 +3,7 @@ import { BenefitItem, StatusBadge } from "@/components/cards"
 import { ArrowButton, TextLink } from "@/components/cta"
 import { Backdrop, Container, Section } from "@/components/layout"
 import { BodyLarge, Eyebrow, SectionHeading } from "@/components/typography"
+import { asset } from "@/lib/assets"
 
 const TITLE = "type-h4 md:type-h5 lg:type-h4"
 const CARD = "relative flex flex-col justify-between gap-3xl overflow-hidden rounded-lg p-md lg:p-xl"
@@ -53,7 +54,7 @@ function HousePlan() {
 function PrivatePlan() {
   return (
     <article className={`${CARD} min-w-0 bg-surface-default lg:flex-1`}>
-      <Backdrop src="/assets/plan-private.webp" overlay={PLAN_OVERLAY} />
+      <Backdrop src={asset("assets/plan-private.webp")} overlay={PLAN_OVERLAY} />
       <div className="relative flex flex-col gap-sm md:gap-md">
         <div className="flex items-start justify-between">
           <h3 className={`${TITLE} text-text-primary`}>Monarco Private</h3>
@@ -87,7 +88,7 @@ function PrivatePlan() {
 function ReservePlan() {
   return (
     <article className={`${CARD} min-w-0 bg-surface-default lg:flex-1`}>
-      <Backdrop src="/assets/plan-reserve.webp" overlay={PLAN_OVERLAY} />
+      <Backdrop src={asset("assets/plan-reserve.webp")} overlay={PLAN_OVERLAY} />
       <div className="relative flex flex-col gap-sm md:gap-md">
         <div className="flex items-start justify-between">
           <h3 className={`${TITLE} text-text-action`}>Monarco Reserve</h3>

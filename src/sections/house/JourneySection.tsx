@@ -5,6 +5,7 @@ import { Container, Section } from "@/components/layout"
 import { CompactMetricsList } from "@/components/metrics"
 import { TimeRange, TrendChart } from "@/components/trend-chart"
 import { BodyLarge, Eyebrow, SectionHeading } from "@/components/typography"
+import { asset } from "@/lib/assets"
 import { cn } from "@/lib/utils"
 
 function Step({
@@ -89,7 +90,7 @@ export function JourneySection() {
         </div>
         <div className="grid gap-md md:grid-cols-2 lg:flex">
           <Step title="Read" body="Take a new Recovery M.I. read." bodyClassName="md:w-[160px] lg:w-[147px]">
-            <img src="/assets/read-portrait.webp" alt="" className="h-[180px] w-full rounded-md object-cover md:h-[172px] lg:h-[184px]" />
+            <img src={asset("assets/read-portrait.webp")} alt="" className="h-[180px] w-full rounded-md object-cover md:h-[172px] lg:h-[184px]" />
           </Step>
           <Step title="Understand" body="Explore your insights and recommendations.">
             <ReportPreview />
