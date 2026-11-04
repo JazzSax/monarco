@@ -79,6 +79,14 @@
   --radius-xl: 16px;
 }
 
+@keyframes dissolve {
+  from { opacity: 0; }
+}
+@utility animate-dissolve {
+  animation: dissolve 300ms ease-out;
+  @media (prefers-reduced-motion: reduce) { animation: none; }
+}
+
 @utility type-h1 { font-size: var(--h1-size); line-height: var(--h1-line); }
 @utility type-h2 { font-size: var(--h2-size); line-height: var(--h2-line); }
 @utility type-h3 { font-size: var(--h3-size); line-height: var(--h3-line); }

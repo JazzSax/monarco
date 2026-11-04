@@ -44,16 +44,32 @@ export function Divider() {
 /** Decorative cover image with an optional gradient overlay, filling its positioned parent. */
 export function Backdrop({
   src,
+  video,
   overlay,
   imgClassName,
 }: {
   src: string
+  /** Looping muted background video (Figma video fill). `src` is its poster, and what reduced-motion users see. */
+  video?: string
   overlay?: string
   imgClassName?: string
 }) {
   return (
     <>
       <img src={src} alt="" className={cn("absolute inset-0 size-full object-cover", imgClassName)} />
+      {video && (
+        <video
+          src={video}
+          poster={src}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          aria-hidden
+          className={cn("absolute inset-0 size-full object-cover motion-reduce:hidden", imgClassName)}
+        />
+      )}
       {overlay && <div className="absolute inset-0" style={{ background: overlay }} />}
     </>
   )

@@ -30,9 +30,20 @@ function NavItems({ className, itemClassName, onNavigate }: { className?: string
               to={link.to}
               onClick={onNavigate}
               aria-current={isActive ? "page" : undefined}
-              className={cn("type-sm flex items-center gap-2xs py-2xs", isActive ? "text-text-action" : "text-text-secondary hover:text-text-primary", itemClassName)}
+              // Prototype: Nav Link "Inactive" smart-animates to "Active" on hover over 300ms, ease-out.
+              className={cn(
+                "group type-sm flex items-center gap-2xs py-2xs transition-colors duration-300 ease-out motion-reduce:transition-none",
+                isActive ? "text-text-action" : "text-text-secondary hover:text-text-action focus-visible:text-text-action",
+                itemClassName,
+              )}
             >
-              <span className={cn("size-1.5 rounded-full bg-surface-action", !isActive && "invisible")} aria-hidden />
+              <span
+                className={cn(
+                  "size-1.5 rounded-full bg-surface-action transition-opacity duration-300 ease-out motion-reduce:transition-none",
+                  !isActive && "opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100",
+                )}
+                aria-hidden
+              />
               {link.label}
             </Link>
           </li>

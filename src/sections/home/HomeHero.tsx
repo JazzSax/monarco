@@ -8,6 +8,7 @@ export function HomeHero() {
   return (
     <HeroSection
       image={asset("assets/hero-home.webp")}
+      video={asset("assets/hero-home.mp4")}
       overlay="linear-gradient(90deg, #1d1b18 0%, rgb(29 27 24 / 0.5) 45%, rgb(29 27 24 / 0) 100%)"
       bodyClassName="lg:w-[400px]"
       eyebrow="RECOVERY M.I."

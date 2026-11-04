@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils"
 /** Full-bleed hero: 844 / 980 / 980 tall, copy bottom-aligned until desktop, then centred below the nav. */
 export function HeroSection({
   image,
+  video,
   overlay,
   eyebrow,
   title,
@@ -16,6 +17,7 @@ export function HeroSection({
   bodyClassName,
 }: {
   image: string
+  video?: string
   overlay: string
   eyebrow: string
   title: string
@@ -27,7 +29,7 @@ export function HeroSection({
 }) {
   return (
     <section className="relative flex h-[844px] flex-col justify-end overflow-hidden bg-surface-default py-section md:h-[980px] lg:justify-center lg:pt-[184px]">
-      <Backdrop src={image} overlay={overlay} />
+      <Backdrop src={image} video={video} overlay={overlay} />
       <Container className="flex flex-col gap-5xl md:gap-8xl">
         <div className="flex flex-col gap-3xl lg:gap-4xl">
           <div className={cn("flex w-[290px] flex-col gap-lg md:w-[338px] lg:w-[492px]", copyClassName)}>

@@ -44,6 +44,8 @@
   --icon-action-secondary: #765226;
   --icon-inverse: #1d1b18;
   --icon-on-action: #12110f;
+  /* Used only by the Button component's Secondary text-link Hover variant, which is not tokenised in Figma. */
+  --neutral-300: #d4d4d4;
 
   /* Spacing Semantic / Mobile */
   --container-large: 16px;

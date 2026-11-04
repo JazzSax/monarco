@@ -22,7 +22,7 @@ const FINISHES = [
 export function SolisSection() {
   return (
     <Section id="solis" className="bg-surface-default">
-      <Backdrop src={asset("assets/solis-bg.webp")} overlay="linear-gradient(90deg, rgb(29 27 24 / 0.8) 0%, rgb(29 27 24 / 0.6) 100%)" />
+      <Backdrop src={asset("assets/solis-bg.webp")} video={asset("assets/solis.mp4")} overlay="linear-gradient(90deg, rgb(29 27 24 / 0.8) 0%, rgb(29 27 24 / 0.6) 100%)" />
       <Container className="flex flex-col gap-5xl lg:flex-row lg:justify-between">
         <div className="flex flex-col gap-3xl lg:w-[553px]">
           <div className="flex flex-col gap-xl md:gap-3xl">

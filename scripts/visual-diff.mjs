@@ -6,7 +6,7 @@ import { chromium } from "playwright"
 import pixelmatch from "pixelmatch"
 import { PNG } from "pngjs"
 
-const BASE = process.env.BASE_URL ?? "http://localhost:5173"
+const BASE = process.env.BASE_URL ?? "http://localhost:5173/monarco"
 const OUT = "design/diff"
 const filter = process.argv[2] ?? ""
 const CASES = [
@@ -31,16 +31,20 @@ for (const [name, route, widths] of CASES) {
       deviceScaleFactor: 2,
     })
     const page = await context.newPage()
+    // Figma frames export video fills as their still poster; reduced motion shows that poster.
+    await page.emulateMedia({ reducedMotion: "reduce" })
     await page.goto(BASE + route, { waitUntil: "networkidle" })
     await page.evaluate(() => document.fonts.ready)
     if (isNav) await page.getByRole("button", { name: "Open menu" }).click()
     const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth)
-    if (process.env.SECTIONS) {
-      const heights = await page.evaluate(() =>
-        [...document.querySelectorAll("aside, main > *, footer")].map((el) => +el.getBoundingClientRect().height.toFixed(1)),
-      )
-      console.log(`${id} sections: ${heights.join(" ")}`)
-    }
+    // Section boxes, for per-section reporting (SECTIONS=1).
+    const sections = await page.evaluate(() =>
+      [...document.querySelectorAll("aside, main > *, footer")].map((el) => {
+        const r = el.getBoundingClientRect()
+        const name = el.querySelector("h1, h2, h3")?.textContent?.trim().slice(0, 32) || el.tagName.toLowerCase()
+        return { name, top: r.top + scrollY, height: r.height }
+      }),
+    )
     const shot = PNG.sync.read(await page.screenshot({ fullPage: !isNav, animations: "disabled" }))
     await context.close()
 
@@ -65,6 +69,15 @@ for (const [name, route, widths] of CASES) {
     }
     fs.writeFileSync(`${OUT}/${id}.png`, PNG.sync.write(strip))
 
+    if (process.env.SECTIONS && !isNav) {
+      for (const sec of sections) {
+        if (sec.height < 2) continue
+        const y0 = Math.round(sec.top * 2), y1 = Math.min(h, Math.round((sec.top + sec.height) * 2))
+        let bad = 0
+        for (let y = y0; y < y1; y++) for (let x = 0; x < w; x++) if (diff.data[(y * w + x) * 4] === 255 && diff.data[(y * w + x) * 4 + 1] === 0) bad++
+        console.log(`  ${id}  ${String(Math.round(sec.height)).padStart(5)}px  ${((bad / ((y1 - y0) * w)) * 100).toFixed(1).padStart(5)}%  ${sec.name}`)
+      }
+    }
     const heightDelta = (shot.height - base.height) / 2
     if (Math.abs(heightDelta) > 1 || overflow > 0) failed = true
     console.log(`${id}: height ${shot.height / 2} vs ${base.height / 2} (delta ${heightDelta}px), diff ${((count / (w * h)) * 100).toFixed(2)}%, x-overflow ${overflow}px`)
