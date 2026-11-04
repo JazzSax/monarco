@@ -14,9 +14,9 @@ const SPECS: { icon: ReactNode; lines: string[] }[] = [
 ]
 
 const FINISHES = [
-  { name: "Mineral", caption: "A lighter Perspective", image: "finish-mineral" },
-  { name: "Tera", caption: "An earthy experience", image: "finish-tera" },
-  { name: "Obsidian", caption: "Our signature finish", image: "finish-obsidian" },
+  { name: "Mineral", caption: "A lighter Perspective", image: "finish-mineral", zoom: "lg:scale-[1.6]" },
+  { name: "Tera", caption: "An earthy experience", image: "finish-tera", zoom: "lg:scale-[1.2]" },
+  { name: "Obsidian", caption: "Our signature finish", image: "finish-obsidian", zoom: "lg:scale-[1.2]" },
 ]
 
 export function SolisSection() {
@@ -61,7 +61,12 @@ export function SolisSection() {
         <ul className="flex gap-xs md:gap-md lg:w-[604px] lg:gap-2xl lg:self-center">
           {FINISHES.map((finish) => (
             <li key={finish.name} className="min-w-0 flex-1 overflow-hidden rounded-lg border border-border-glass/25 lg:w-[180px] lg:flex-none">
-              <img src={asset(`assets/${finish.image}.webp`)} alt="" className="h-[112px] w-full object-cover md:h-[219px] lg:h-[200px]" />
+              <div className="h-[112px] overflow-hidden md:h-[219px] lg:h-[200px]">
+                <picture>
+                  <source media="(min-width: 1200px)" srcSet={asset(`assets/${finish.image}-lg.webp`)} />
+                  <img src={asset(`assets/${finish.image}.webp`)} alt="" className={`size-full object-cover lg:origin-top lg:object-top ${finish.zoom}`} />
+                </picture>
+              </div>
               <div className="flex flex-col items-center gap-2xs bg-surface-default px-md py-sm text-center">
                 <p className="type-md font-medium text-text-primary md:type-lg">{finish.name}</p>
                 <p className="type-sm text-text-secondary">{finish.caption}</p>

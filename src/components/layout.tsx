@@ -44,11 +44,14 @@ export function Divider() {
 /** Decorative cover image with an optional gradient overlay, filling its positioned parent. */
 export function Backdrop({
   src,
+  desktopSrc,
   video,
   overlay,
   imgClassName,
 }: {
   src: string
+  /** Different crop source used from the desktop breakpoint (1200px), as some Figma desktop frames do. */
+  desktopSrc?: string
   /** Looping muted background video (Figma video fill). `src` is its poster, and what reduced-motion users see. */
   video?: string
   overlay?: string
@@ -56,7 +59,10 @@ export function Backdrop({
 }) {
   return (
     <>
-      <img src={src} alt="" className={cn("absolute inset-0 size-full object-cover", imgClassName)} />
+      <picture className="contents">
+        {desktopSrc && <source media="(min-width: 1200px)" srcSet={desktopSrc} />}
+        <img src={src} alt="" className={cn("absolute inset-0 size-full object-cover", imgClassName)} />
+      </picture>
       {video && (
         <video
           src={video}

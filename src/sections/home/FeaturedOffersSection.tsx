@@ -11,7 +11,7 @@ export function FeaturedOffersSection() {
     <Section className="bg-surface-contrast">
       <Container className="flex flex-col gap-md lg:flex-row lg:gap-2xl">
         <article className={CARD}>
-          <Backdrop src={asset("assets/caviar-home.webp")} overlay="linear-gradient(90deg, #1d1b18 0%, rgb(29 27 24 / 0.5) 45%, rgb(29 27 24 / 0) 100%)" />
+          <Backdrop src={asset("assets/caviar-home.webp")} desktopSrc={asset("assets/caviar-home-lg.webp")} imgClassName="lg:origin-[25%_50%] lg:scale-[1.2] lg:object-[25%_50%]" overlay="linear-gradient(90deg, #1d1b18 0%, rgb(29 27 24 / 0.5) 45%, rgb(29 27 24 / 0) 100%)" />
           <div className="relative flex w-[252px] flex-col gap-3xl md:w-[277px] lg:w-[368px]">
             <div className="flex flex-col gap-md">
               <div className="flex flex-col gap-sm">
