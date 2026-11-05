@@ -1,5 +1,5 @@
 import { ArrowRight } from "lucide-react"
-import { Link } from "react-router-dom"
+import { TextLink } from "@/components/cta"
 import { Container, Section } from "@/components/layout"
 import { BodyLarge, Eyebrow, SectionHeading } from "@/components/typography"
 import { asset } from "@/lib/assets"
@@ -29,18 +29,23 @@ export function PerspectivesSection() {
           {PERSPECTIVES.map((p) => (
             <article
               key={p.title}
-              className="relative flex h-[268.5px] flex-col justify-between overflow-hidden rounded-lg p-md [--top:0.16] md:h-[295.11px] md:[--top:0] lg:h-[308px] lg:px-xl lg:pt-xl lg:pb-sm"
+              className="group relative flex h-[268.5px] flex-col justify-between overflow-hidden rounded-lg p-md [--top:0.16] md:h-[295.11px] md:[--top:0] lg:h-[308px] lg:px-xl lg:pt-xl lg:pb-sm"
             >
-              <img src={asset(`assets/${p.image}.webp`)} alt="" className="absolute inset-0 size-full object-cover" />
+              {/* Prototype: hover zooms the photo in (1.07, measured against the prototype); copy and overlay stay put. */}
+              <img
+                src={asset(`assets/${p.image}.webp`)}
+                alt=""
+                className="absolute inset-0 size-full object-cover transition-transform duration-300 ease-out group-hover:scale-[1.07] group-focus-within:scale-[1.07] motion-reduce:transition-none"
+              />
               <div className="absolute inset-0" style={{ background: OVERLAY }} />
               <div className="relative flex flex-col gap-2xs lg:gap-xs">
                 <h3 className="type-h5 text-text-primary md:type-h6 lg:type-h4">{p.title}</h3>
                 <p className="type-md text-text-secondary italic md:type-sm md:font-medium lg:type-md lg:font-normal">{p.subtitle}</p>
               </div>
-              <Link to="#" className="type-caption relative inline-flex items-center gap-xs self-start py-2xs text-text-primary">
-                <span className="underline decoration-1 underline-offset-[0.5em]">Watch the Story</span>
-                <ArrowRight className="size-3.5" aria-hidden />
-              </Link>
+              {/* Figma's Small text-link Button: same Hover variant as every TextLink (scale 0.98, neutral-300, 200ms). */}
+              <TextLink icon={<ArrowRight aria-hidden />} className="type-caption relative self-start py-2xs [&_svg]:size-3.5">
+                Watch the Story
+              </TextLink>
             </article>
           ))}
         </div>
