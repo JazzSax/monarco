@@ -73,6 +73,26 @@ Page-specific decisions:
 1. **Light Rituals image.** The Drive folder's red mask photo is a different shot from the one in the frame, so the card image is cropped from Figma's own Desktop export (`ritual-light.webp`, 656×492).
 2. **Copy reproduced as designed**, including "House Exlusive".
 
+## Solis page
+
+Built 2026-11-05 from THE MONARCO HOUSE file (Solis: Desktop `248:4240`, Tablet `597:799`, Mobile `708:350`), measured against `design/baseline/solis-*.png`. Images and both videos come from the Drive "Solis" folder; the marble band reuses `marble.webp` (the same texture as the file's `Marmer.png`).
+
+| Section | 1440 | 744 | 390 | Notes |
+|---|---|---|---|---|
+| Announcement banner | 2.2% | 4.7% | 2.8% | Shared component. |
+| Hero (video) | 0.8% | 1.2% | 1.7% | Video fill `Solis Hero Section.mp4` → `solis-hero.mp4` (1.8 MB) with its first frame as the poster. |
+| The World Sees What You Do | 0.5% | 1.9% | 2.0% | Tablet and mobile crops found with `scripts/tune-crop.mjs`. |
+| A Clearer Stronger You / Ten Minutes | 1.5% | 2.3% | 2.5% | One marble band holding two blocks; cards are one `ImageCard` with `benefit` and `step` variants. |
+| Three Months Inside The House | 0.6% | 1.6% | 1.4% | Matches. |
+| Your Ritual Begins Here (video) | 0.5% | 1.1% | 1.5% | Video fill `Solis Pre Order.mp4` → `solis-preorder.mp4` (1.1 MB). |
+| The Details | 0.8% | 1.5% | 1.8% | Matches, including Figma's 0/1/2px spec divider heights. |
+| Footer | 2.5% | 3.8% | 3.5% | Shared component. |
+| **Whole page** | **1.00%** | **1.91%** | **2.23%** | Page heights match Figma exactly. No horizontal overflow from 320 to 1920 px. |
+
+Prototype behaviour: nav and footer "Solis" and the Rituals page's "Explore Solis" → `/solis`. Both video fills play muted and looping, and show their still under reduced motion. The Pre-Order, Explore The Benefits, Watch How It Works and FAQ items have no interactions in the prototype and are built static. The FAQ shows "Do I need a membership ?" open, as designed; the other answers are hidden placeholder layers with no copy, so they are not rendered. Covered by `npm run check:prototype`.
+
+Copy reproduced as designed: "Signarure", "depatch", "processe", "Wherever your are", "A Different Your", "th three-month", "Warrenty", "WHAT”S".
+
 ## Other known differences and decisions
 
 1. **Image crops.** The view-only Figma seat exposes image fills but not their crop or scale transforms. Original-resolution images were downloaded from the file and cropped with `object-position` / zoom tuned against the baselines. This is the largest remaining source of mismatch. An editor seat (or the Figma REST API with a token) would give the exact transforms.
@@ -81,7 +101,7 @@ Page-specific decisions:
 4. **Breakpoints.** Figma defines no viewport thresholds (Style Guide, section 08). The build switches at 744 px (tablet) and 1200 px (desktop). Pixel parity is only measurable at the three frame widths; between them the layout is fluid.
 5. **Nav Menu Open.** The Figma frame shows "The House" as active over the Home page. The build marks the current route as active instead.
 6. **Announcement close button.** No prototype interaction; the build dismisses the banner (addition).
-7. **Unwired links.** The prototype only wires links to The House, Rituals and back. Solis, Our House, Men of Monarco, Sign In, Begin My Read, footer support/legal links and social links point to `#`.
+7. **Unwired links.** The prototype only wires links to The House, Rituals, Solis and back. Our House, Men of Monarco, Sign In, Begin My Read, footer support/legal links and social links point to `#`.
 8. **Copy reproduced as designed**, including typos: "Begining", "depatch", "THE JONARCO HOUSE", "Discover Your Recover Index".
 9. **Contrast.** Token pairs that the Figma style guide itself flags as failing WCAG AA (for example `Text/on-action` on `Surface/action Secondary`, 2.70:1) are reproduced as designed.
 10. **Fonts.** THE MONARCO HOUSE file uses Inter for every Paragraf and Caption text style and DM Sans for every H1–H6 style (headings, prices, scores). Each `type-*` utility in `src/index.css` carries its font, and body text defaults to Inter, so a responsive switch such as the footer titles' `type-h6 md:type-md` changes font exactly where Figma does. Both fonts are self-hosted variable fonts with optical sizing (`@fontsource-variable/inter/opsz.css`, `@fontsource-variable/dm-sans/opsz.css`); Inter's optical size is what makes line wraps match Figma. Remaining text differences are renderer anti-aliasing and sub-pixel advance widths.

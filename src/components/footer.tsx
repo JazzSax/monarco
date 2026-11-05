@@ -7,7 +7,7 @@ const COLUMNS = [
   { title: "Members", links: ["Begin My Read", "Sign In"] },
   { title: "Support", links: ["Contact", "FAQs", "Delivery & Return"] },
 ]
-const ROUTES: Record<string, string> = { "The House": "/the-house", Rituals: "/rituals" }
+const ROUTES: Record<string, string> = { "The House": "/the-house", Rituals: "/rituals", Solis: "/solis" }
 const LEGAL = ["Privacy Policy", "Terms of Service", "Membership Terms", "Terms of Sale", "Cookie Policy", "Accessibility"]
 
 function Instagram() {

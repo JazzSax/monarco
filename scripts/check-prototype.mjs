@@ -66,5 +66,18 @@ assert.equal(await card.evaluate((el) => getComputedStyle(el).outlineColor), "rg
 await page.getByRole("link", { name: "Explore Membership" }).click()
 await page.waitForURL("**/the-house")
 
+// 10. Nav "Solis" navigates to the Solis page, whose hero and pre-order fills are muted, looping videos.
+await page.getByRole("link", { name: "Solis", exact: true }).first().click()
+await page.waitForURL("**/solis")
+await page.waitForFunction(() => document.querySelector("h1")?.textContent === "Solis")
+const solisVideos = await page.$$eval("video", (vs) => vs.map((v) => ({ src: v.currentSrc.split("/").pop(), muted: v.muted, loop: v.loop })))
+assert.deepEqual(solisVideos.map((v) => v.src), ["solis-hero.mp4", "solis-preorder.mp4"])
+assert.ok(solisVideos.every((v) => v.muted && v.loop))
+
+// 11. Rituals "Explore Solis" navigates to the Solis page.
+await page.goto(BASE + "/rituals", { waitUntil: "networkidle" })
+await page.getByRole("link", { name: "Explore Solis" }).click()
+await page.waitForURL("**/solis")
+
 await browser.close()
 console.log("prototype behaviours: all checks passed")

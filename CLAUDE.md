@@ -18,7 +18,9 @@ Mobile (390) frames near pixel-perfectly, including prototype behaviour. `docs/d
 | Convert Figma image / video fills | `scripts/import-assets.mjs` (add a `name: [hash prefix, width]` entry), `scripts/import-videos.mjs` |
 
 The repo lives in WSL (`~/Upwork/test`), Node 20 via nvm (`source ~/.nvm/nvm.sh && nvm use 20`). From Windows, run commands with
-`wsl -d Ubuntu-22.04 -- bash <script.sh>`; Git Bash rewrites `/mnt/...` paths and `$VARS` passed to `wsl`, so put the command in a script file.
+`wsl -d Ubuntu-22.04 -- bash <script.sh>`; Git Bash rewrites `/mnt/...` paths and `$VARS` passed to `wsl`, so put the command in a script file
+(shell loop variables like `$f` get mangled too; build the command list on the Windows side instead). Start the dev server as a background task;
+`nohup … &` inside a one-off `wsl` call dies when that call returns.
 
 ## Structure: where things go
 
@@ -97,7 +99,7 @@ If browser tools aren't available, stop and ask the user. Steps 1–5 can't be d
    (`Get-Clipboard -Raw` in PowerShell; `navigator.clipboard.readText()` hangs), save it, then outline it with `scripts/figma-outline.mjs`.
    The dump gives sizes, auto-layout, padding, gaps, colours, gradients, fonts and image fill names. It has **no nesting and no text**: work out
    hierarchy from order and widths. The outline keeps `display: none` layers. They are hidden variants (for example the unused badge in a card), so skip them by hand.
-3. **Export baselines.** Select the frame → Properties → Export (2x PNG) → move it from Downloads to
+3. **Export baselines.** Select the frame → Properties → Export (2x PNG; a frame with no preset gets one from "+", which defaults to 1x, so pick 2x from its dropdown) → move it from Downloads to
    `design/baseline/<page>-1440|744|390.png` and delete any `*Zone.Identifier` file. Read the copy from these images (layer names are often placeholders such as
    "Medium length hero headline goes here"), and reproduce it exactly, typos included.
 4. **Walk the prototype.** Open `/proto/...&scaling=scale-down-width&hide-ui=1`. Click an empty spot inside the frame to flash the hotspots,

@@ -12,7 +12,7 @@ const CATEGORIES = [
   { image: "ritual-eye", badge: HOUSE, title: "Eye Rituals", description: "Targeted formulations for considered eye-care rituals.", link: "Explore Eye Rituals" },
   { image: "ritual-face", badge: HOUSE, title: "Face Rituals", description: "Essential formulations for daily recovery.", link: "Explore Face Rituals" },
   { image: "ritual-body", badge: HOUSE, title: "Body Rituals", description: "Everyday body care, elevated through experience.", link: "Explore Body Rituals" },
-  { image: "ritual-light", badge: OPEN, title: "Light Rituals", description: "Monarco Solis. A considered light-therapy ritual.", link: "Explore Solis" },
+  { image: "ritual-light", badge: OPEN, title: "Light Rituals", description: "Monarco Solis. A considered light-therapy ritual.", link: "Explore Solis", to: "/solis" },
 ]
 
 export function CollectionSection() {

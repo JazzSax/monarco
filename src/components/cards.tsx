@@ -3,9 +3,14 @@ import { Check } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 /** Glass pill used for hero proof points. */
-export function TrustPill({ icon, children }: { icon: ReactNode; children: ReactNode }) {
+export function TrustPill({ icon, children, className }: { icon: ReactNode; children: ReactNode; className?: string }) {
   return (
-    <span className="type-caption inline-flex items-center gap-2xs rounded-full border border-border-glass/25 bg-surface-contrast/5 px-sm py-xs font-medium whitespace-nowrap text-text-secondary backdrop-blur-[5px] [&_svg]:size-4 lg:[&_svg]:size-5">
+    <span
+      className={cn(
+        "type-caption inline-flex items-center gap-2xs rounded-full border border-border-glass/25 bg-surface-contrast/5 px-sm py-xs font-medium whitespace-nowrap text-text-secondary backdrop-blur-[5px] [&_svg]:size-4 lg:[&_svg]:size-5",
+        className,
+      )}
+    >
       {icon}
       {children}
     </span>
