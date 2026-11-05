@@ -77,6 +77,21 @@ const solisVideos = await page.$$eval("video", (vs) => vs.map((v) => ({ src: v.c
 assert.deepEqual(solisVideos.map((v) => v.src), ["solis-hero.mp4", "solis-preorder.mp4"])
 assert.ok(solisVideos.every((v) => v.muted && v.loop))
 
+// FAQ: starts on "Do I need a membership ?"; opening another closes it, and the answer animates open.
+const membershipFaq = page.getByRole("button", { name: "Do I need a membership ?" })
+const deliveryFaq = page.getByRole("button", { name: "When will my order arrive ?" })
+assert.equal(await membershipFaq.getAttribute("aria-expanded"), "true")
+await deliveryFaq.click()
+assert.equal(await deliveryFaq.getAttribute("aria-expanded"), "true")
+assert.equal(await membershipFaq.getAttribute("aria-expanded"), "false")
+await page.waitForTimeout(400)
+const answerHeight = async (btn) => btn.evaluate((el) => document.getElementById(el.getAttribute("aria-controls")).getBoundingClientRect().height)
+assert.ok((await answerHeight(deliveryFaq)) > 10, "opened answer should be visible")
+assert.equal(await answerHeight(membershipFaq), 0)
+await deliveryFaq.click()
+await page.waitForTimeout(400)
+assert.equal(await answerHeight(deliveryFaq), 0)
+
 // 11. Rituals "Explore Solis" navigates to the Solis page.
 await page.goto(BASE + "/rituals", { waitUntil: "networkidle" })
 await page.getByRole("link", { name: "Explore Solis" }).click()

@@ -1,4 +1,4 @@
-import { Fragment, type ReactNode } from "react"
+import { Fragment, useId, useState, type ReactNode } from "react"
 import { Plus, X } from "lucide-react"
 import { Container, Section } from "@/components/layout"
 import { BodyLarge, Eyebrow, SectionHeading } from "@/components/typography"
@@ -18,14 +18,64 @@ const SPECS = [
 // Figma's divider layers grow from 0 to 2px tall down the list, which nudges the lower rows down; kept for parity.
 const DIVIDER_HEIGHTS = ["h-0", "h-0", "h-0", "h-px", "h-px", "h-[2px]", "h-[2px]"]
 
-const FAQS: { question: string; answer?: string }[] = [
-  { question: "When will my order arrive ?" },
-  { question: "Do I need a membership ?", answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique." },
-  { question: "How does th three-month membership work ?" },
-  { question: "What’s included in the box ?" },
-  { question: "How long is a treatment session ?" },
-  { question: "What support is available ?" },
-]
+// Figma only has copy for "Do I need a membership ?" (placeholder Lorem ipsum); the other answers are empty hidden
+// layers, so they reuse the same placeholder until real answers exist.
+const PLACEHOLDER_ANSWER = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique."
+const FAQS = [
+  "When will my order arrive ?",
+  "Do I need a membership ?",
+  "How does th three-month membership work ?",
+  "What’s included in the box ?",
+  "How long is a treatment session ?",
+  "What support is available ?",
+].map((question) => ({ question, answer: PLACEHOLDER_ANSWER }))
+
+const ICON = "absolute inset-0 size-full transition-[rotate,opacity] duration-300 ease-out motion-reduce:transition-none"
+
+/** One item open at a time; opens on "Do I need a membership ?" as designed. */
+function FaqList() {
+  const [open, setOpen] = useState<number | null>(1)
+  const id = useId()
+  return (
+    <ul className="flex flex-col gap-xs">
+      {FAQS.map(({ question, answer }, i) => {
+        const isOpen = open === i
+        return (
+          <li key={question} className="rounded-md bg-surface-contrast text-text-tertiary lg:rounded-lg">
+            <button
+              type="button"
+              aria-expanded={isOpen}
+              aria-controls={`${id}-${i}`}
+              onClick={() => setOpen(isOpen ? null : i)}
+              className="flex w-full cursor-pointer items-center gap-sm rounded-[inherit] p-sm text-left md:px-md lg:items-start lg:p-md"
+            >
+              <span className="type-lg flex-1 md:type-md">{question}</span>
+              {/* Plus and × cross-fade while rotating a quarter turn, so the icon appears to twist closed/open. */}
+              <span className="relative size-5 shrink-0 md:size-[18px] lg:size-5" aria-hidden>
+                <Plus className={cn(ICON, isOpen ? "rotate-90 opacity-0" : "rotate-0 opacity-100")} strokeWidth={1.5} />
+                <X className={cn(ICON, isOpen ? "rotate-0 opacity-100" : "-rotate-90 opacity-0")} strokeWidth={1.5} />
+              </span>
+            </button>
+            {/* Height animates via grid rows 0fr → 1fr; the inner box clips while it grows. */}
+            <div
+              id={`${id}-${i}`}
+              role="region"
+              aria-hidden={!isOpen}
+              className={cn(
+                "grid transition-[grid-template-rows] duration-300 ease-out motion-reduce:transition-none",
+                isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]",
+              )}
+            >
+              <div className="min-h-0 overflow-hidden">
+                <p className="type-md px-sm pb-sm md:type-sm md:px-md lg:pb-md">{answer}</p>
+              </div>
+            </div>
+          </li>
+        )
+      })}
+    </ul>
+  )
+}
 
 function Panel({ title, children }: { title: string; children: ReactNode }) {
   return (
@@ -68,23 +118,8 @@ export function ProductDetailsSection() {
             </div>
           </Panel>
 
-          {/* Static, as in the prototype: only "Do I need a membership ?" is open and has an answer in the design. */}
           <Panel title="Frequently Asked Questions">
-            <ul className="flex flex-col gap-xs">
-              {FAQS.map(({ question, answer }) => (
-                <li key={question} className="rounded-md bg-surface-contrast text-text-tertiary lg:rounded-lg">
-                  <div className="flex items-center gap-sm p-sm md:px-md lg:items-start lg:p-md">
-                    <p className="type-lg flex-1 md:type-md">{question}</p>
-                    {answer ? (
-                      <X className="size-5 shrink-0 md:size-[18px] lg:size-5" strokeWidth={1.5} aria-hidden />
-                    ) : (
-                      <Plus className="size-5 shrink-0 md:size-[18px] lg:size-5" strokeWidth={1.5} aria-hidden />
-                    )}
-                  </div>
-                  {answer && <p className="type-md px-sm pb-sm md:type-sm md:px-md lg:pb-md">{answer}</p>}
-                </li>
-              ))}
-            </ul>
+            <FaqList />
           </Panel>
         </div>
       </Container>
