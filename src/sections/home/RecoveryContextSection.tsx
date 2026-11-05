@@ -27,11 +27,21 @@ export function RecoveryContextSection() {
             <article
               key={s.label}
               className={cn(
-                "flex w-[133px] shrink-0 flex-col overflow-hidden rounded-md border md:w-auto md:flex-1 lg:rounded-lg",
-                i === 0 ? "border-border-action" : "border-border-glass/50",
+                "group flex w-[133px] shrink-0 flex-col overflow-hidden rounded-md border border-border-glass/50 transition-colors duration-300 ease-out hover:border-border-action motion-reduce:transition-none md:w-auto md:flex-1 lg:rounded-lg lg:hover:border-border-action",
+                i === 0 && "border-border-action lg:border-border-glass/50",
+               
               )}
             >
-              <img src={asset(`assets/${s.image}.webp`)} alt="" className="h-[120px] w-full object-cover lg:aspect-square lg:h-auto" />
+              <div className="h-[120px] w-full overflow-hidden lg:aspect-square lg:h-auto">
+                <img
+                  src={asset(`assets/${s.image}.webp`)}
+                  alt=""
+                  className={cn(
+                    "size-full object-cover transition-transform duration-300 ease-out group-hover:scale-[1.04] motion-reduce:transition-none",
+                  
+                  )}
+                />
+              </div>
               <div className="flex flex-col items-center gap-xs bg-surface-default px-md py-sm md:px-sm lg:gap-2xs lg:px-md text-center text-text-primary">
                 <p className="type-md whitespace-nowrap">{s.label}</p>
                 <p className="type-lg font-medium md:type-h6">{s.score}</p>

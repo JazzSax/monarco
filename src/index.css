@@ -90,6 +90,23 @@
   @media (prefers-reduced-motion: reduce) { animation: none; }
 }
 
+/* A 1px stroke inside the box that takes no layout space and paints above the content (Figma's inside stroke).
+   Unlike an inset outline or ring, children such as a zooming photo can't cover it. Colour via --stroke. */
+@utility inset-stroke {
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    border: 1px solid var(--stroke, transparent);
+    border-radius: inherit;
+    pointer-events: none;
+    transition: border-color 300ms ease-out;
+    @media (prefers-reduced-motion: reduce) { transition: none; }
+  }
+}
+
 @utility type-h1 { font-family: var(--font-display); font-size: var(--h1-size); line-height: var(--h1-line); }
 @utility type-h2 { font-family: var(--font-display); font-size: var(--h2-size); line-height: var(--h2-line); }
 @utility type-h3 { font-family: var(--font-display); font-size: var(--h3-size); line-height: var(--h3-line); }

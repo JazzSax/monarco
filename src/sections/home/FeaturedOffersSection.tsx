@@ -24,10 +24,11 @@ export function FeaturedOffersSection() {
               <p className="type-h4 font-medium text-text-primary md:type-h5">£125</p>
             </div>
             <div>
-              <ArrowButton icon={null}>
-                <LockKeyhole aria-hidden />
+              <p className="type-md inline-flex items-center gap-2xs rounded-md bg-surface-action px-lg py-sm whitespace-nowrap text-text-inverse ring-1 ring-border-action">
+                <LockKeyhole className="size-5 shrink-0" aria-hidden />
+                <span className="sr-only">Locked: </span>
                 Members Only
-              </ArrowButton>
+              </p>
             </div>
           </div>
         </article>

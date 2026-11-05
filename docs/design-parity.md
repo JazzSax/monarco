@@ -42,7 +42,7 @@ Prototype features checked and confirmed absent, so not built: sticky navigation
 | Mirror Portrait Reveal | 2.0% | 2.9% | 3.8% | Matches at rest. **Deliberate addition:** the handle can be dragged or moved with the keyboard; the prototype has no interaction here. |
 | Over Time (trend chart) | 0.6% | 1.6% | 0.9% | Matches. |
 | Membership | 1.0% | 2.8% | 2.1% | Matches. |
-| Solis (video) | **9.2%** | 2.3% | 1.9% | Desktop finish tiles (Mineral / Tera / Obsidian) use Figma *Crop* image transforms that the viewer seat does not expose. The closest source and zoom were found by an automated search against the baseline, but the crops are not exact. |
+| Solis (video) | 2.4% | 2.3% | 1.9% | Finish tiles use the same photo at every width, cover-cropped (the desktop-only zoomed crops were tuned to the older file). Desktop tiles are bottom-aligned with the copy and their stroke takes no space, as in Figma. Tera is drawn highlighted (zoomed) in the frame; the build leaves it at rest. |
 | Read. Restore. Return. | 1.2% | 1.8% | 2.1% | Matches. |
 | Featured Offers | **5.7%** | **10.8%** | **17.1%** | Same cause as Solis: the caviar jar and "Disconnecting" photos are cropped with transforms that are not exposed. Tablet and mobile crops are approximate. |
 | Footer | 2.6% | 3.8% | 3.5% | Matches. |

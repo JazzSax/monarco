@@ -35,9 +35,6 @@ const map = {
   "caviar-home": ["1c5766", 1400],
   // Desktop frames crop different source images (found by scripts' crop search against the Figma baselines).
   "caviar-home-lg": ["90ca85", 1600],
-  "finish-mineral-lg": ["8e77c4", 600],
-  "finish-tera-lg": ["390337", 500],
-  "finish-obsidian-lg": ["29594d", 500],
   "disconnect": ["befa82", 2880],
   "footer-rock": ["a78970", 2880],
   "parchment": ["27a8df", 2170],

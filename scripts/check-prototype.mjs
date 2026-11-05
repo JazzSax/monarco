@@ -35,6 +35,21 @@ const nav = await rituals.evaluate((el) => ({ color: getComputedStyle(el).color,
 assert.equal(nav.color, "rgb(201, 159, 84)")
 assert.equal(nav.dot, "1")
 
+// 3b. Recovery context cards: hovering a card turns its stroke gold and zooms its photo.
+const scene = page.locator("article", { hasText: "Early Start" })
+await scene.hover()
+// Poll: the hover may start late while the smooth scroll brings the card into view.
+await page.waitForFunction((el) => getComputedStyle(el).borderTopColor === "rgb(201, 159, 84)", await scene.elementHandle(), { timeout: 3000 })
+assert.match(await scene.locator("img").evaluate((el) => getComputedStyle(el).scale), /^1\.04/)
+
+// 3c. Solis finish cards: same hover (gold stroke, photo zoom).
+const finish = page.locator("#solis li", { hasText: "Mineral" })
+await finish.hover()
+// Poll: the hover may start late while the smooth scroll brings the card into view.
+// Desktop draws this stroke on an overlay above the photo (it takes no space in Figma).
+await page.waitForFunction((el) => getComputedStyle(el, "::after").borderTopColor === "rgb(201, 159, 84)", await finish.elementHandle(), { timeout: 3000 })
+assert.match(await finish.locator("img").evaluate((el) => getComputedStyle(el).scale), /^1\.04/)
+
 // 4. "Enter The House" navigates with the dissolve and lands at the top of The House.
 await page.getByRole("link", { name: "Enter The House" }).click()
 await page.waitForURL("**/the-house")
@@ -63,7 +78,7 @@ await page.waitForFunction(() => Math.abs(document.getElementById("collection").
 const card = page.locator("#collection article").first()
 await card.hover()
 await page.waitForTimeout(300)
-assert.equal(await card.evaluate((el) => getComputedStyle(el).outlineColor), "rgb(201, 159, 84)")
+await page.waitForFunction((el) => getComputedStyle(el, "::after").borderTopColor === "rgb(201, 159, 84)", await card.elementHandle(), { timeout: 3000 })
 await page.waitForTimeout(100) // let the 300ms zoom finish
 assert.match(await card.locator("img").evaluate((el) => getComputedStyle(el).scale), /^1\.04/)
 // Its text link shrinks to 0.98 and keeps its colour on the light card.
@@ -117,7 +132,7 @@ await page.waitForFunction(() => Math.abs(document.getElementById("philosophy").
 const expression = page.locator("article", { hasText: "Monarco Rituals" })
 await expression.hover()
 await page.waitForTimeout(300)
-assert.equal(await expression.evaluate((el) => getComputedStyle(el).outlineColor), "rgb(201, 159, 84)")
+await page.waitForFunction((el) => getComputedStyle(el, "::after").borderTopColor === "rgb(201, 159, 84)", await expression.elementHandle(), { timeout: 3000 })
 await page.waitForTimeout(200) // let the 300ms zoom finish
 assert.match(await expression.locator("img").evaluate((el) => getComputedStyle(el).scale), /^1\.04/)
 const ritualsLink = page.getByRole("link", { name: "Explore Our Rituals" })

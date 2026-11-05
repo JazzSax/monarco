@@ -63,8 +63,7 @@ export function ExpressionsSection() {
           {EXPRESSIONS.map((e) => (
             <article
               key={e.title}
-              // Prototype: hover turns the stroke gold and zooms the photo in (1.04, measured). Figma's desktop stroke takes no layout space (outline); tablet and mobile strokes do (border).
-              className="group flex flex-col overflow-hidden rounded-lg border border-border-glass/50 bg-surface-default transition-colors duration-200 ease-out hover:border-border-action motion-reduce:transition-none lg:border-0 lg:outline-1 lg:-outline-offset-1 lg:outline-border-glass/50 lg:outline-solid lg:hover:outline-border-action"
+              className="group flex flex-col overflow-hidden rounded-lg border border-border-glass/50 bg-surface-default transition-colors duration-200 ease-out hover:border-border-action motion-reduce:transition-none lg:border-0 lg:inset-stroke lg:[--stroke:rgb(167_157_141/0.5)] lg:hover:[--stroke:var(--border-action)]"
             >
               {/* The wrapper clips the zoom to the image area. */}
               <div className="h-[196px] shrink-0 overflow-hidden md:h-[164.5px] lg:h-[243px]">

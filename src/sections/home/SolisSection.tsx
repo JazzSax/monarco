@@ -14,9 +14,9 @@ const SPECS: { icon: ReactNode; lines: string[] }[] = [
 ]
 
 const FINISHES = [
-  { name: "Mineral", caption: "A lighter Perspective", image: "finish-mineral", zoom: "lg:scale-[1.6]" },
-  { name: "Tera", caption: "An earthy experience", image: "finish-tera", zoom: "lg:scale-[1.2]" },
-  { name: "Obsidian", caption: "Our signature finish", image: "finish-obsidian", zoom: "lg:scale-[1.2]" },
+  { name: "Mineral", caption: "A lighter Perspective", image: "finish-mineral" },
+  { name: "Tera", caption: "An earthy experience", image: "finish-tera" },
+  { name: "Obsidian", caption: "Our signature finish", image: "finish-obsidian" },
 ]
 
 export function SolisSection() {
@@ -58,14 +58,24 @@ export function SolisSection() {
           </div>
         </div>
 
-        <ul className="flex gap-xs md:gap-md lg:w-[604px] lg:gap-2xl lg:self-center">
+        <ul className="flex gap-xs md:gap-md lg:w-[604px] lg:gap-2xl lg:self-end">
           {FINISHES.map((finish) => (
-            <li key={finish.name} className="min-w-0 flex-1 overflow-hidden rounded-lg border border-border-glass/25 lg:w-[180px] lg:flex-none">
+            // Prototype: hover turns the stroke gold and zooms the photo in (1.04 from the centre, measured).
+            // The wrapper below clips the zoom to the image area.
+            <li
+              key={finish.name}
+              // Figma's desktop stroke sits inside the card and takes no space (image 180 wide, card 270 tall), so it is drawn
+              // on an overlay above the content (the zooming photo would cover an inset outline). On tablet and mobile the
+              // stroke does take space: a border.
+              className="group relative min-w-0 flex-1 overflow-hidden rounded-lg border border-border-glass/25 transition-colors duration-300 ease-out hover:border-border-action motion-reduce:transition-none lg:w-[180px] lg:flex-none lg:border-0 lg:inset-stroke lg:[--stroke:rgb(167_157_141/0.25)] lg:hover:[--stroke:var(--border-action)]"
+            >
               <div className="h-[112px] overflow-hidden md:h-[219px] lg:h-[200px]">
-                <picture>
-                  <source media="(min-width: 1200px)" srcSet={asset(`assets/${finish.image}-lg.webp`)} />
-                  <img src={asset(`assets/${finish.image}.webp`)} alt="" className={`size-full object-cover lg:origin-top lg:object-top ${finish.zoom}`} />
-                </picture>
+                {/* Figma (THE MONARCO HOUSE) uses the same photo at every width, cover-cropped into the card. */}
+                <img
+                  src={asset(`assets/${finish.image}.webp`)}
+                  alt=""
+                  className="size-full object-cover transition-transform duration-300 ease-out group-hover:scale-[1.04] motion-reduce:transition-none"
+                />
               </div>
               <div className="flex flex-col items-center gap-2xs bg-surface-default px-md py-sm text-center">
                 <p className="type-md font-medium text-text-primary md:type-lg">{finish.name}</p>

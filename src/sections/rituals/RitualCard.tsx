@@ -41,7 +41,7 @@ export function RitualCard({
     <article
       // Prototype: the card's Hover variant adds a 1px Border/action stroke and zooms the photo in (1.04, measured).
       className={cn(
-        "group flex flex-col overflow-hidden rounded-lg bg-surface-contrast outline-1 -outline-offset-1 outline-transparent transition-[outline-color] duration-200 ease-out outline-solid hover:outline-border-action motion-reduce:transition-none",
+        "group inset-stroke flex flex-col overflow-hidden rounded-lg bg-surface-contrast hover:[--stroke:var(--border-action)]",
         className,
       )}
     >
