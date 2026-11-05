@@ -64,6 +64,15 @@ const card = page.locator("#collection article").first()
 await card.hover()
 await page.waitForTimeout(300)
 assert.equal(await card.evaluate((el) => getComputedStyle(el).outlineColor), "rgb(201, 159, 84)")
+await page.waitForTimeout(100) // let the 300ms zoom finish
+assert.match(await card.locator("img").evaluate((el) => getComputedStyle(el).scale), /^1\.04/)
+// Its text link shrinks to 0.98 and keeps its colour on the light card.
+const cardLink = card.getByRole("link")
+const linkColor = await cardLink.evaluate((el) => getComputedStyle(el).color)
+await cardLink.hover()
+await page.waitForTimeout(300)
+assert.equal(await cardLink.evaluate((el) => getComputedStyle(el).scale), "0.98")
+assert.equal(await cardLink.evaluate((el) => getComputedStyle(el).color), linkColor)
 
 // 9. "Explore Membership" navigates to The House.
 await page.getByRole("link", { name: "Explore Membership" }).click()

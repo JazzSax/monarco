@@ -1,5 +1,5 @@
 import type { ReactNode } from "react"
-import { Link } from "react-router-dom"
+import { TextLink } from "@/components/cta"
 import { cn } from "@/lib/utils"
 
 // Figma's "Ritual Category Cards" component. The category variant (collection) and the detail variant
@@ -39,13 +39,20 @@ export function RitualCard({
   const v = VARIANT[variant]
   return (
     <article
-      // Prototype: the card's Hover variant adds a 1px Border/action stroke.
+      // Prototype: the card's Hover variant adds a 1px Border/action stroke and zooms the photo in (1.04, measured).
       className={cn(
-        "flex flex-col overflow-hidden rounded-lg bg-surface-contrast outline-1 -outline-offset-1 outline-transparent transition-[outline-color] duration-200 ease-out outline-solid hover:outline-border-action motion-reduce:transition-none",
+        "group flex flex-col overflow-hidden rounded-lg bg-surface-contrast outline-1 -outline-offset-1 outline-transparent transition-[outline-color] duration-200 ease-out outline-solid hover:outline-border-action motion-reduce:transition-none",
         className,
       )}
     >
-      <img src={image} alt="" className={cn("w-full shrink-0 object-cover", v.image)} />
+      {/* The wrapper clips the zoom to the image area. */}
+      <div className={cn("shrink-0 overflow-hidden", v.image)}>
+        <img
+          src={image}
+          alt=""
+          className="size-full object-cover transition-transform duration-300 ease-out group-hover:scale-[1.04] group-focus-within:scale-[1.04] motion-reduce:transition-none"
+        />
+      </div>
       <div className="flex flex-1 flex-col gap-md px-md pt-sm pb-md md:gap-xl lg:px-xl lg:py-md">
         <div className="flex flex-col gap-xs">
           {badge}
@@ -54,15 +61,13 @@ export function RitualCard({
             <p className="type-md text-text-tertiary">{description}</p>
           </div>
         </div>
-        <Link
+        {/* Text-link Button: shrinks to 0.98 on hover like every TextLink. On these light cards it keeps its colour. */}
+        <TextLink
           to={to}
-          className={cn(
-            "mt-auto self-start text-text-tertiary underline decoration-1 underline-offset-[0.5em]",
-            v.link,
-          )}
+          className={cn("mt-auto h-auto self-start py-0 text-text-tertiary hover:text-text-tertiary lg:hover:text-text-inverse", v.link)}
         >
           {link}
-        </Link>
+        </TextLink>
       </div>
     </article>
   )
