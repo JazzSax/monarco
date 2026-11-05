@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom"
 import { TextLink } from "@/components/cta"
 import { Backdrop, Container, Section } from "@/components/layout"
 import { DotLabel } from "@/components/typography"
@@ -64,10 +63,17 @@ export function ExpressionsSection() {
           {EXPRESSIONS.map((e) => (
             <article
               key={e.title}
-              // Prototype: hover turns the stroke gold. Figma's desktop stroke takes no layout space (outline); tablet and mobile strokes do (border).
-              className="flex flex-col overflow-hidden rounded-lg border border-border-glass/50 bg-surface-default transition-colors duration-200 ease-out hover:border-border-action motion-reduce:transition-none lg:border-0 lg:outline-1 lg:-outline-offset-1 lg:outline-border-glass/50 lg:outline-solid lg:hover:outline-border-action"
+              // Prototype: hover turns the stroke gold and zooms the photo in (1.04, measured). Figma's desktop stroke takes no layout space (outline); tablet and mobile strokes do (border).
+              className="group flex flex-col overflow-hidden rounded-lg border border-border-glass/50 bg-surface-default transition-colors duration-200 ease-out hover:border-border-action motion-reduce:transition-none lg:border-0 lg:outline-1 lg:-outline-offset-1 lg:outline-border-glass/50 lg:outline-solid lg:hover:outline-border-action"
             >
-              <img src={asset(`assets/${e.image}.webp`)} alt="" className="h-[196px] w-full shrink-0 object-cover md:h-[164.5px] lg:h-[243px]" />
+              {/* The wrapper clips the zoom to the image area. */}
+              <div className="h-[196px] shrink-0 overflow-hidden md:h-[164.5px] lg:h-[243px]">
+                <img
+                  src={asset(`assets/${e.image}.webp`)}
+                  alt=""
+                  className="size-full object-cover transition-transform duration-300 ease-out group-hover:scale-[1.04] group-focus-within:scale-[1.04] motion-reduce:transition-none"
+                />
+              </div>
               <div className="flex flex-1 flex-col gap-xl px-md pt-sm pb-md lg:px-xl lg:py-md">
                 <div className="flex flex-col gap-sm lg:gap-md">
                   <div className={cn("flex flex-col gap-xs md:gap-2xs lg:gap-xs", e.headingClassName)}>
@@ -77,12 +83,13 @@ export function ExpressionsSection() {
                   </div>
                   <p className="type-md line-clamp-3 text-text-secondary md:type-sm lg:type-md">{e.body}</p>
                 </div>
-                <Link
+                {/* Figma's Small text-link Button: same Hover variant as every TextLink (scale 0.98, neutral-300, 200ms). */}
+                <TextLink
                   to={e.to}
-                  className="type-sm mt-auto inline-flex h-5 items-center self-start font-medium text-text-secondary underline decoration-1 underline-offset-[0.5em] md:h-4 md:font-normal lg:type-caption lg:h-auto lg:py-2xs lg:text-text-primary"
+                  className="type-sm mt-auto h-5 self-start py-0 font-medium text-text-secondary md:h-4 md:font-normal lg:type-caption lg:h-auto lg:py-2xs lg:text-text-primary"
                 >
                   {e.link}
-                </Link>
+                </TextLink>
               </div>
             </article>
           ))}

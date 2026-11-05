@@ -54,6 +54,9 @@ await page.waitForFunction(() => document.querySelector("h1")?.textContent === "
 
 // 7. "Explore The Collection" scrolls to the collection (prototype: Scroll to).
 await page.getByRole("link", { name: "Explore The Collection" }).click()
+// Smooth: 100ms in, the page is still on its way to the section.
+await page.waitForTimeout(100)
+assert.ok(await page.evaluate(() => document.getElementById("collection").getBoundingClientRect().top > 20), "anchor scroll should be smooth")
 await page.waitForFunction(() => Math.abs(document.getElementById("collection").getBoundingClientRect().top) < 2)
 
 // 8. Ritual card hover: 1px Border/action stroke after the 200ms transition.
@@ -91,7 +94,13 @@ const expression = page.locator("article", { hasText: "Monarco Rituals" })
 await expression.hover()
 await page.waitForTimeout(300)
 assert.equal(await expression.evaluate((el) => getComputedStyle(el).outlineColor), "rgb(201, 159, 84)")
-await page.getByRole("link", { name: "Explore Our Rituals" }).click()
+await page.waitForTimeout(200) // let the 300ms zoom finish
+assert.match(await expression.locator("img").evaluate((el) => getComputedStyle(el).scale), /^1\.04/)
+const ritualsLink = page.getByRole("link", { name: "Explore Our Rituals" })
+await ritualsLink.hover()
+await page.waitForTimeout(300)
+assert.equal(await ritualsLink.evaluate((el) => getComputedStyle(el).scale), "0.98")
+await ritualsLink.click()
 await page.waitForURL("**/rituals")
 await page.goto(BASE + "/our-house", { waitUntil: "networkidle" })
 await page.getByRole("link", { name: "Discover Monarco Solis" }).click()

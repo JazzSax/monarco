@@ -10,7 +10,8 @@ import TheHousePage from "@/pages/TheHousePage"
 export default function App() {
   const { pathname } = useLocation()
   useLayoutEffect(() => {
-    window.scrollTo(0, 0)
+    // A new page starts at the top immediately; smooth scrolling is only for in-page anchors.
+    window.scrollTo({ top: 0, behavior: "instant" })
   }, [pathname])
 
   return (
