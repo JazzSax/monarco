@@ -79,5 +79,23 @@ await page.goto(BASE + "/rituals", { waitUntil: "networkidle" })
 await page.getByRole("link", { name: "Explore Solis" }).click()
 await page.waitForURL("**/solis")
 
+// 12. Nav "Our House" navigates to Our House; "Discover Our Philosophy" scrolls to Chapter II (prototype: Scroll to).
+await page.getByRole("link", { name: "Our House", exact: true }).first().click()
+await page.waitForURL("**/our-house")
+await page.waitForFunction(() => document.querySelector("h1")?.textContent === "A Heritage in the Making")
+await page.getByRole("link", { name: "Discover Our Philosophy" }).click()
+await page.waitForFunction(() => Math.abs(document.getElementById("philosophy").getBoundingClientRect().top) < 2)
+
+// 13. Expression card hover turns its stroke gold; its links go to Rituals and Solis.
+const expression = page.locator("article", { hasText: "Monarco Rituals" })
+await expression.hover()
+await page.waitForTimeout(300)
+assert.equal(await expression.evaluate((el) => getComputedStyle(el).outlineColor), "rgb(201, 159, 84)")
+await page.getByRole("link", { name: "Explore Our Rituals" }).click()
+await page.waitForURL("**/rituals")
+await page.goto(BASE + "/our-house", { waitUntil: "networkidle" })
+await page.getByRole("link", { name: "Discover Monarco Solis" }).click()
+await page.waitForURL("**/solis")
+
 await browser.close()
 console.log("prototype behaviours: all checks passed")

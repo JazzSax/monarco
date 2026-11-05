@@ -12,7 +12,7 @@ const LINKS = [
   { label: "The House", to: "/the-house" },
   { label: "Rituals", to: "/rituals" },
   { label: "Solis", to: "/solis" },
-  { label: "Our House", to: "#" },
+  { label: "Our House", to: "/our-house" },
   { label: "Men of Monarco", to: "#" },
 ]
 

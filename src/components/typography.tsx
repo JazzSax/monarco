@@ -1,5 +1,19 @@
-import type { ComponentProps } from "react"
+import { Fragment, type ComponentProps } from "react"
 import { cn } from "@/lib/utils"
+
+/** "CHAPTER I • THE ORIGIN" style label: items separated by a 6px dot in the text colour (override with dotClassName). */
+export function DotLabel({ items, className, dotClassName }: { items: string[]; className?: string; dotClassName?: string }) {
+  return (
+    <p className={cn("type-sm flex items-center gap-xs font-medium", className)}>
+      {items.map((item, i) => (
+        <Fragment key={item}>
+          {i > 0 && <span className={cn("size-1.5 shrink-0 rounded-full bg-current", dotClassName)} aria-hidden />}
+          {item}
+        </Fragment>
+      ))}
+    </p>
+  )
+}
 
 const eyebrowTone = {
   action: "text-text-action",

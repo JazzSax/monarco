@@ -14,6 +14,7 @@ const CASES = [
   ["house", "/the-house", [1440, 744, 390]],
   ["rituals", "/rituals", [1440, 744, 390]],
   ["solis", "/solis", [1440, 744, 390]],
+  ["our-house", "/our-house", [1440, 744, 390]],
   ["nav", "/", [744, 390]], // menu open
 ]
 

@@ -93,6 +93,30 @@ Prototype behaviour: nav and footer "Solis" and the Rituals page's "Explore Soli
 
 Copy reproduced as designed: "Signarure", "depatch", "processe", "Wherever your are", "A Different Your", "th three-month", "Warrenty", "WHAT”S".
 
+## Our House page
+
+Built 2026-11-05 from THE MONARCO HOUSE file (Our House: Desktop `488:494`, Tablet `669:350`, Mobile `788:350`), measured against `design/baseline/our-house-*.png`. Images come from the Drive "Our House" folder, plus `Monarco Red Mask at Golden Hour.png` from the "Rituals" folder.
+
+| Section | 1440 | 744 | 390 | Notes |
+|---|---|---|---|---|
+| Announcement banner | 2.2% | 4.7% | 2.8% | Shared component. |
+| Hero | 0.9% | 2.1% | 2.8% | 518 / 600 / 980 tall, shorter than the other heroes below desktop. |
+| I · The Origin | 1.0% | 1.9% | 4.7% | Figma's `The Origin` fill shows the wide shot, which is Drive's `portrait.png`. Mobile crop is top-aligned (search). |
+| II · Our Philosophy | 1.1% | 3.8% | 5.5% | Mobile crop found with `scripts/tune-crop.mjs`. Paragraph 1 has a hard line break after "himself", as in Figma. |
+| III · Our Principles | 1.5% | 2.5% | 3.6% | The visible cards are Figma's "Alternate" photo layout; the sand-card layout is a hidden variant. |
+| IV · The Expressions | 3.5% | 4.8% | 4.0% | Card descriptions are cut with "…" in Figma; the visible copy is reproduced and clamped to three lines. |
+| V · The People | 0.7% | 6.3% | 4.7% | Desktop image runs 25px past the content edge, as designed. |
+| VI · The Future | 1.8% | 5.5% | 7.4% | Mobile crop approximate (search). |
+| Every Legacy Begins Somewhere | 0.8% | 1.4% | 4.0% | Figma's fill is named only `image`; the dark marble (`marble.webp`) under the 0.9 / 0.8 wash matches. |
+| Footer | 2.5% | 4.0% | 3.3% | Shared component. |
+| **Whole page** | **1.58%** | **3.64%** | **4.26%** | Page heights match Figma exactly. No horizontal overflow from 320 to 1920 px. |
+
+Image sources: the Recovery M.I. and Monarco Rituals card images and the three-portrait `The People` image have no source in Drive, so they are cropped from Figma's 2x Desktop export (`expression-recovery`, `expression-rituals`, `our-house-people`). Tablet and mobile show the same crops at their own aspect ratios, which is the main reason The People is 4–6% below desktop.
+
+Prototype behaviour: nav and footer "Our House" → `/our-house`; "Discover Our Philosophy" scrolls to Chapter II; "Explore Our Rituals" → Rituals and "Discover Monarco Solis" → Solis; expression cards get a gold stroke on hover (the principle cards have no hover). "Explore The Expressions", "Discover Recovery M.I.", "Explore Men of Monarco" and "Begin Your Recovery Read" are unwired, or point to pages that aren't built yet, so they go to `#`. Covered by `npm run check:prototype`.
+
+Figma quirks reproduced for parity: the desktop expression-card stroke takes no layout space while the tablet and mobile ones do; the mobile Principles intro box is fixed at 60px; the mobile closing content box is fixed at 256px; the mobile Objects card heading is 2px taller than its siblings.
+
 ## Other known differences and decisions
 
 1. **Image crops.** The view-only Figma seat exposes image fills but not their crop or scale transforms. Original-resolution images were downloaded from the file and cropped with `object-position` / zoom tuned against the baselines. This is the largest remaining source of mismatch. An editor seat (or the Figma REST API with a token) would give the exact transforms.
@@ -101,7 +125,7 @@ Copy reproduced as designed: "Signarure", "depatch", "processe", "Wherever your 
 4. **Breakpoints.** Figma defines no viewport thresholds (Style Guide, section 08). The build switches at 744 px (tablet) and 1200 px (desktop). Pixel parity is only measurable at the three frame widths; between them the layout is fluid.
 5. **Nav Menu Open.** The Figma frame shows "The House" as active over the Home page. The build marks the current route as active instead.
 6. **Announcement close button.** No prototype interaction; the build dismisses the banner (addition).
-7. **Unwired links.** The prototype only wires links to The House, Rituals, Solis and back. Our House, Men of Monarco, Sign In, Begin My Read, footer support/legal links and social links point to `#`.
+7. **Unwired links.** The prototype only wires links to The House, Rituals, Solis, Our House and back. Men of Monarco, Sign In, Begin My Read, footer support/legal links and social links point to `#`.
 8. **Copy reproduced as designed**, including typos: "Begining", "depatch", "THE JONARCO HOUSE", "Discover Your Recover Index".
 9. **Contrast.** Token pairs that the Figma style guide itself flags as failing WCAG AA (for example `Text/on-action` on `Surface/action Secondary`, 2.70:1) are reproduced as designed.
 10. **Fonts.** THE MONARCO HOUSE file uses Inter for every Paragraf and Caption text style and DM Sans for every H1–H6 style (headings, prices, scores). Each `type-*` utility in `src/index.css` carries its font, and body text defaults to Inter, so a responsive switch such as the footer titles' `type-h6 md:type-md` changes font exactly where Figma does. Both fonts are self-hosted variable fonts with optical sizing (`@fontsource-variable/inter/opsz.css`, `@fontsource-variable/dm-sans/opsz.css`); Inter's optical size is what makes line wraps match Figma. Remaining text differences are renderer anti-aliasing and sub-pixel advance widths.

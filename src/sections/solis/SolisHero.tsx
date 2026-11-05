@@ -2,10 +2,11 @@ import { BatteryFull, Cpu, Timer, Waves } from "lucide-react"
 import { TrustPill } from "@/components/cards"
 import { ArrowButton } from "@/components/cta"
 import { Backdrop, Container } from "@/components/layout"
-import { Eyebrow } from "@/components/typography"
+import { DotLabel, Eyebrow } from "@/components/typography"
 import { asset } from "@/lib/assets"
-import { Edition } from "@/sections/solis/Edition"
 
+// As designed, typo included.
+const EDITION = ["Signarure Clay Red", "First Edition"]
 // Mobile pills use 20px icons (38px pills), tablet 16px, desktop 20px.
 const PILL = "[&_svg]:size-5 md:[&_svg]:size-4 lg:[&_svg]:size-5"
 
@@ -33,7 +34,7 @@ export function SolisHero() {
                 <p className="type-lg text-text-secondary lg:w-[323px]">A light therapy ritual for the man behind the performance.</p>
               </div>
               <div className="flex flex-col gap-2xs lg:gap-xs">
-                <Edition tone="action" />
+                <DotLabel items={EDITION} className="text-text-action" />
                 <p className="type-h4 font-medium text-text-primary">£599</p>
                 <p className="type-sm text-text-secondary">Includes three months of Monarco Intelligence membership.</p>
               </div>

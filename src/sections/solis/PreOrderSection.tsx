@@ -2,10 +2,11 @@ import { CalendarDays, History, ShieldCheck, User } from "lucide-react"
 import { TrustPill } from "@/components/cards"
 import { ArrowButton } from "@/components/cta"
 import { Backdrop, Container, Section } from "@/components/layout"
-import { Eyebrow } from "@/components/typography"
+import { DotLabel, Eyebrow } from "@/components/typography"
 import { asset } from "@/lib/assets"
-import { Edition } from "@/sections/solis/Edition"
 
+// As designed, typo included.
+const EDITION = ["Signarure Clay Red", "First Edition"]
 // These pills keep 16px icons at every width.
 const PILL = "lg:[&_svg]:size-4"
 
@@ -26,7 +27,7 @@ export function PreOrderSection() {
                 <Eyebrow tone="action">MONARCO SOLIS</Eyebrow>
                 <h2 className="type-h2 text-text-primary lg:w-[334px]">Your Ritual Begins Here</h2>
               </div>
-              <Edition tone="secondary" />
+              <DotLabel items={EDITION} className="text-text-secondary" dotClassName="bg-border-strong" />
             </div>
             <div className="flex flex-col gap-2xs md:gap-xs lg:gap-sm">
               <p className="type-h4 font-medium text-text-primary">£599</p>

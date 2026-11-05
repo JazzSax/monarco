@@ -1,6 +1,7 @@
 import type { ReactNode } from "react"
 import { ArrowButton, TextLink } from "@/components/cta"
 import { Backdrop, Container, Section } from "@/components/layout"
+import { DotLabel } from "@/components/typography"
 import { asset } from "@/lib/assets"
 import { cn } from "@/lib/utils"
 
@@ -36,11 +37,7 @@ function PromoCard({
       <div className="relative flex flex-col items-start gap-3xl">
         <div className={cn("flex flex-col gap-sm", copyClassName)}>
           <div className="flex flex-col gap-2xs">
-            <p className="type-sm flex items-center gap-xs font-medium text-text-action">
-              MONARCO
-              <span className="size-1.5 rounded-full bg-surface-action" aria-hidden />
-              {label}
-            </p>
+            <DotLabel items={["MONARCO", label]} className="text-text-action" />
             <h2 className={cn("type-h4 text-text-primary lg:type-h3", titleClassName)}>{title}</h2>
           </div>
           {description}
