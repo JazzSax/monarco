@@ -108,7 +108,8 @@ If browser tools aren't available, stop and ask the user. Steps 1–5 can't be d
 5. **Get assets.** Use the page's folder in the project Drive (originals) or Figma. Match each Figma fill name to a file and reuse existing
    `public/assets` files where the fill is the same. Convert with `sharp` to WebP at 2x the largest display width into `public/assets/`
    (`scripts/import-assets.mjs` for originals downloaded from Figma, `scripts/import-videos.mjs` for video fills). If no source matches what the
-   frame shows, crop the image out of the 2x export.
+   frame shows, crop the image out of the 2x export. When `tune-crop` plateaus above ~10% at every position, compare the export and the source
+   side by side: Drive sometimes holds a different render of the same scene. Report it instead of forcing a crop.
 6. **Build section by section.** One file per Figma section, reusing the table above. Mirror Figma's auto-layout: flex direction, gap, padding,
    fixed widths where text wrapping depends on them, and fixed heights where Figma fixes them.
 7. **Diff and fix in this order:** page **heights** (every section's height must match, or everything below shifts), then layout and type,

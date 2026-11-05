@@ -97,5 +97,13 @@ await page.goto(BASE + "/our-house", { waitUntil: "networkidle" })
 await page.getByRole("link", { name: "Discover Monarco Solis" }).click()
 await page.waitForURL("**/solis")
 
+// 14. Nav "Men of Monarco" and Our House's "Explore Men of Monarco" navigate to Men of Monarco.
+await page.getByRole("link", { name: "Men of Monarco", exact: true }).first().click()
+await page.waitForURL("**/men-of-monarco")
+await page.waitForFunction(() => document.querySelector("h1")?.textContent?.includes("of Monarco"))
+await page.goto(BASE + "/our-house", { waitUntil: "networkidle" })
+await page.getByRole("link", { name: "Explore Men of Monarco" }).click()
+await page.waitForURL("**/men-of-monarco")
+
 await browser.close()
 console.log("prototype behaviours: all checks passed")

@@ -117,6 +117,25 @@ Prototype behaviour: nav and footer "Our House" → `/our-house`; "Discover Our 
 
 Figma quirks reproduced for parity: the desktop expression-card stroke takes no layout space while the tablet and mobile ones do; the mobile Principles intro box is fixed at 60px; the mobile closing content box is fixed at 256px; the mobile Objects card heading is 2px taller than its siblings.
 
+## Men of Monarco page
+
+Built 2026-11-05 from THE MONARCO HOUSE file (Men of Monarco: Desktop `297:6941`, Tablet `626:350`, Mobile `728:350`), measured against `design/baseline/men-of-monarco-*.png`. Images come from the Drive "Men of Monarco" folder; the application card reuses `marble.webp` (Figma fill `Marmer.png`).
+
+| Section | 1440 | 744 | 390 | Notes |
+|---|---|---|---|---|
+| Announcement banner | 2.2% | 4.7% | 2.8% | Shared component. |
+| Hero | 0.9% | **10.7%** | **10.9%** | Figma's tablet and mobile fills show the photo smaller than a cover fit. The closest match found by `scripts/tune-crop.mjs` is a 0.85 scale anchored top-right on tablet and x 20% on mobile; neither is exact. |
+| Three Perspectives | 3.0% | 1.6% | 1.1% | Card subtitles are italic: Inter's real italic is loaded (`opsz-italic.css`). |
+| The Philosophy | 0.9% | 2.4% | 4.1% | Matches. |
+| Founding Offer | **7.5%** | **6.7%** | 4.1% | The frame's `The Begining` fill is a different render of the scene from Drive's `Founding Offer Section.png` (no sunset, different framing); no crop of the Drive file matches. Needs the original. |
+| The Application | 1.5% | 2.9% | 2.4% | Matches. |
+| Footer | 2.5% | 3.8% | 3.7% | Shared component. |
+| **Whole page** | **2.95%** | **5.52%** | **4.18%** | Page heights match Figma exactly. No horizontal overflow from 320 to 1920 px. |
+
+Prototype behaviour: nav and footer "Men of Monarco" and Our House's "Explore Men of Monarco" → `/men-of-monarco`. The page itself has no prototype interactions: "Tell Your Story", "Watch the Story" and the cards are unwired and have no hover, so they are built static with links to `#`. Covered by `npm run check:prototype`.
+
+Copy reproduced as designed: "theraphy", "Appromaximately", "Who are you ?".
+
 ## Other known differences and decisions
 
 1. **Image crops.** The view-only Figma seat exposes image fills but not their crop or scale transforms. Original-resolution images were downloaded from the file and cropped with `object-position` / zoom tuned against the baselines. This is the largest remaining source of mismatch. An editor seat (or the Figma REST API with a token) would give the exact transforms.
@@ -125,7 +144,7 @@ Figma quirks reproduced for parity: the desktop expression-card stroke takes no 
 4. **Breakpoints.** Figma defines no viewport thresholds (Style Guide, section 08). The build switches at 744 px (tablet) and 1200 px (desktop). Pixel parity is only measurable at the three frame widths; between them the layout is fluid.
 5. **Nav Menu Open.** The Figma frame shows "The House" as active over the Home page. The build marks the current route as active instead.
 6. **Announcement close button.** No prototype interaction; the build dismisses the banner (addition).
-7. **Unwired links.** The prototype only wires links to The House, Rituals, Solis, Our House and back. Men of Monarco, Sign In, Begin My Read, footer support/legal links and social links point to `#`.
+7. **Unwired links.** The prototype only wires links between the six pages. Sign In, Begin My Read, footer support/legal links and social links point to `#`.
 8. **Copy reproduced as designed**, including typos: "Begining", "depatch", "THE JONARCO HOUSE", "Discover Your Recover Index".
 9. **Contrast.** Token pairs that the Figma style guide itself flags as failing WCAG AA (for example `Text/on-action` on `Surface/action Secondary`, 2.70:1) are reproduced as designed.
 10. **Fonts.** THE MONARCO HOUSE file uses Inter for every Paragraf and Caption text style and DM Sans for every H1–H6 style (headings, prices, scores). Each `type-*` utility in `src/index.css` carries its font, and body text defaults to Inter, so a responsive switch such as the footer titles' `type-h6 md:type-md` changes font exactly where Figma does. Both fonts are self-hosted variable fonts with optical sizing (`@fontsource-variable/inter/opsz.css`, `@fontsource-variable/dm-sans/opsz.css`); Inter's optical size is what makes line wraps match Figma. Remaining text differences are renderer anti-aliasing and sub-pixel advance widths.

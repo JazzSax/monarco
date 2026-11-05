@@ -1,6 +1,7 @@
 import { useLayoutEffect } from "react"
 import { Route, Routes, useLocation } from "react-router-dom"
 import HomePage from "@/pages/HomePage"
+import MenOfMonarcoPage from "@/pages/MenOfMonarcoPage"
 import OurHousePage from "@/pages/OurHousePage"
 import RitualsPage from "@/pages/RitualsPage"
 import SolisPage from "@/pages/SolisPage"
@@ -21,6 +22,7 @@ export default function App() {
         <Route path="/rituals" element={<RitualsPage />} />
         <Route path="/solis" element={<SolisPage />} />
         <Route path="/our-house" element={<OurHousePage />} />
+        <Route path="/men-of-monarco" element={<MenOfMonarcoPage />} />
       </Routes>
     </div>
   )

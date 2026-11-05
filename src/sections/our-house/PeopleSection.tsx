@@ -27,7 +27,7 @@ export function PeopleSection() {
               </div>
             </div>
           </div>
-          <ArrowButton>Explore Men of Monarco</ArrowButton>
+          <ArrowButton to="/men-of-monarco">Explore Men of Monarco</ArrowButton>
         </div>
         {/* Figma's desktop image is 871px wide and runs 25px past the content edge. */}
         <img

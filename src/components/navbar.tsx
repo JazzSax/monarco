@@ -13,7 +13,7 @@ const LINKS = [
   { label: "Rituals", to: "/rituals" },
   { label: "Solis", to: "/solis" },
   { label: "Our House", to: "/our-house" },
-  { label: "Men of Monarco", to: "#" },
+  { label: "Men of Monarco", to: "/men-of-monarco" },
 ]
 
 const MENU_BUTTON = "flex size-8 items-center justify-center rounded-sm bg-surface-sunken text-text-primary ring-1 ring-border-default lg:hidden [&_svg]:size-5"
