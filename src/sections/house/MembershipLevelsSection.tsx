@@ -75,11 +75,15 @@ function PrivatePlan() {
         />
       </div>
       <div className="relative flex flex-col gap-xs">
-        <ArrowButton variant="dark" icon={null} className="w-full">
-          <LockKeyhole aria-hidden />
+        {/* Locked plan: a static label styled like the dark button, so no link and no hover.
+            The icon must not shrink: on desktop icon + label (311px) are wider than the padded box (291.5px),
+            and Figma lets them run into the padding, centred, which justify-center does too. */}
+        <p className="type-md flex w-full items-center justify-center gap-xs rounded-md md:gap-2xs bg-surface-page px-lg py-sm whitespace-nowrap text-text-secondary ring-1 ring-border-subtle">
+          <LockKeyhole className="size-4 shrink-0 stroke-[1.5] text-[var(--icon-secondary)] lg:size-5 lg:stroke-[1.8]" aria-hidden />
+          <span className="sr-only">Locked: </span>
           Future Access Begins with The House
-        </ArrowButton>
-        <TextLink className="w-full py-[11px] md:py-sm">Learn More</TextLink>
+        </p>
+        <TextLink className="w-full py-sm">Learn More</TextLink>
       </div>
     </article>
   )
