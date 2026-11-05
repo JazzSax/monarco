@@ -1,6 +1,6 @@
 # Design parity: build vs Figma file and prototype
 
-Last measured 2026-11-04 against the MONARCO (Test) Figma file (static frames) and its prototype (`node-id=28-312`).
+Last measured 2026-11-05. Home, The House and Rituals baselines are 2x frame exports from THE MONARCO HOUSE Figma file (prototype `node-id=338-9925`). Home and The House were first built from the older MONARCO (Test) file; the `nav-*` baselines are still from that file.
 
 ## How this is measured
 
@@ -32,23 +32,23 @@ Prototype features checked and confirmed absent, so not built: sticky navigation
 
 | Section | 1440 | 744 | 390 | Cause |
 |---|---|---|---|---|
-| Announcement banner | 2.8% | 6.1% | **13.2%** | The sparkle icons are a custom vector in Figma; Lucide `Sun` is used instead. The parchment texture crop differs slightly at mobile. |
-| Hero (video) | 0.5% | 0.8% | 2.0% | Matches (compared against the poster frame). |
-| A Clearer Perspective | 1.2% | 1.8% | 2.0% | Matches. |
-| Different Days (Recovery Context) | **10.6%** | 3.7% | **17.3%** | Figma's background gradient leaves the sky lighter at the top. The viewer seat exposes gradient stops but not their angle or handles, so the overlay is approximated. At 390 one line of body copy also wraps one word differently. |
-| Men of Monarco banner | 3.5% | 5.3% | **8.0%** | Background image crop at mobile is approximated. |
-| How It Works | 1.4% | 3.2% | 3.0% | Matches. |
-| Privacy | 0.9% | 3.4% | 2.7% | Matches. Icons are Lucide equivalents of the Figma vectors. |
+| Announcement banner | 2.2% | 4.7% | 2.5% | The sparkle icons are a custom vector in Figma; Lucide `Sun` is used instead. |
+| Hero (video) | 0.5% | 0.7% | 1.5% | Matches (compared against the poster frame). |
+| A Clearer Perspective | 1.1% | 1.6% | 1.3% | Matches. |
+| Different Days (Recovery Context) | **13.6%** | 3.6% | **16.7%** | Figma's background gradient leaves the sky lighter at the top. The viewer seat exposes gradient stops but not their angle or handles, so the overlay is approximated. |
+| Men of Monarco banner | 3.6% | **7.3%** | **9.5%** | Background image crop below desktop is approximated. |
+| How It Works | 1.2% | 2.7% | 2.8% | Matches. |
+| Privacy | 0.8% | 3.3% | 2.3% | Matches. Icons are Lucide equivalents of the Figma vectors. |
 | Mirror Portrait Reveal | 2.0% | 2.9% | 3.8% | Matches at rest. **Deliberate addition:** the handle can be dragged or moved with the keyboard; the prototype has no interaction here. |
-| Over Time (trend chart) | 0.6% | 1.7% | 1.5% | Matches. |
-| Membership | 1.2% | 2.8% | 2.1% | Matches. |
-| Solis (video) | **8.4%** | 2.7% | 2.7% | Desktop finish tiles (Mineral / Tera / Obsidian) use Figma *Crop* image transforms that the viewer seat does not expose. The closest source and zoom were found by an automated search against the baseline, which improved this from 10.3%, but the crops are not exact. |
-| Read. Restore. Return. | 1.4% | 1.9% | 2.8% | Matches. |
-| Featured Offers | **5.8%** | **10.9%** | **18.3%** | Same cause as Solis: the caviar jar and "Disconnecting" photos are cropped with transforms that are not exposed. The desktop crop was improved from 10.7% by the same search. Tablet and mobile crops are approximate. |
-| Footer | 2.9% | 4.3% | 4.0% | Matches. |
-| **Whole page** | **2.87%** | **3.52%** | **4.60%** | Page heights match Figma exactly (the 0.5px is Figma's fractional frame height). No horizontal overflow at any width. |
+| Over Time (trend chart) | 0.6% | 1.6% | 0.9% | Matches. |
+| Membership | 1.0% | 2.8% | 2.1% | Matches. |
+| Solis (video) | **9.2%** | 2.3% | 1.9% | Desktop finish tiles (Mineral / Tera / Obsidian) use Figma *Crop* image transforms that the viewer seat does not expose. The closest source and zoom were found by an automated search against the baseline, but the crops are not exact. |
+| Read. Restore. Return. | 1.2% | 1.8% | 2.1% | Matches. |
+| Featured Offers | **5.7%** | **10.8%** | **17.1%** | Same cause as Solis: the caviar jar and "Disconnecting" photos are cropped with transforms that are not exposed. Tablet and mobile crops are approximate. |
+| Footer | 2.6% | 3.8% | 3.5% | Matches. |
+| **Whole page** | **3.03%** | **3.35%** | **4.08%** | Page heights match Figma exactly (the 0.5px is Figma's fractional frame height). No horizontal overflow at any width. |
 
-For reference, The House page measures 2.93% / 6.32% / 8.16%, with its outliers (hero at 744 / 390, Members-only, closing section at 390) coming from the same image-crop limitation.
+For reference, The House page measures 2.77% / 6.06% / 7.54%, with its outliers (hero at 744 / 390, Members-only, closing section at 390) coming from the same image-crop limitation.
 
 ## Rituals page
 
@@ -70,9 +70,8 @@ Prototype behaviour on this page: nav and footer "Rituals" → `/rituals`; "Expl
 
 Page-specific decisions:
 
-1. **Inter for body copy.** This file sets all paragraph, label, nav and footer text in Inter (headings and prices stay DM Sans). The Rituals page applies that through `PageShell className`; Home and The House are unchanged and still DM Sans throughout, as in the older file they were built from. Inter is self-hosted with its optical-size axis (`@fontsource-variable/inter/opsz.css`), which is what makes line wraps match Figma.
-2. **Light Rituals image.** The Drive folder's red mask photo is a different shot from the one in the frame, so the card image is cropped from Figma's own Desktop export (`ritual-light.webp`, 656×492).
-3. **Copy reproduced as designed**, including "House Exlusive".
+1. **Light Rituals image.** The Drive folder's red mask photo is a different shot from the one in the frame, so the card image is cropped from Figma's own Desktop export (`ritual-light.webp`, 656×492).
+2. **Copy reproduced as designed**, including "House Exlusive".
 
 ## Other known differences and decisions
 
@@ -85,4 +84,5 @@ Page-specific decisions:
 7. **Unwired links.** The prototype only wires links to The House, Rituals and back. Solis, Our House, Men of Monarco, Sign In, Begin My Read, footer support/legal links and social links point to `#`.
 8. **Copy reproduced as designed**, including typos: "Begining", "depatch", "THE JONARCO HOUSE", "Discover Your Recover Index".
 9. **Contrast.** Token pairs that the Figma style guide itself flags as failing WCAG AA (for example `Text/on-action` on `Surface/action Secondary`, 2.70:1) are reproduced as designed.
-10. **Fonts.** DM Sans (variable, optical sizing) is self-hosted. Remaining text differences are renderer anti-aliasing and sub-pixel advance widths, which is why one or two lines wrap differently at 390 px.
+10. **Fonts.** THE MONARCO HOUSE file uses Inter for every Paragraf and Caption text style and DM Sans for every H1–H6 style (headings, prices, scores). Each `type-*` utility in `src/index.css` carries its font, and body text defaults to Inter, so a responsive switch such as the footer titles' `type-h6 md:type-md` changes font exactly where Figma does. Both fonts are self-hosted variable fonts with optical sizing (`@fontsource-variable/inter/opsz.css`, `@fontsource-variable/dm-sans/opsz.css`); Inter's optical size is what makes line wraps match Figma. Remaining text differences are renderer anti-aliasing and sub-pixel advance widths.
+11. **Home step numbers.** In the new file the Read Journey step numbers use a "Label/Eyebrow" style (DM Sans 600, 12/16, 1.2px tracking, uppercase). The build keeps the earlier Paragraf style for them; this is a design change beyond the font swap and is not applied.

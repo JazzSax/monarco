@@ -2,11 +2,10 @@ import type { ReactNode } from "react"
 import { AnnouncementBanner } from "@/components/announcement-banner"
 import { Footer } from "@/components/footer"
 import { Navbar } from "@/components/navbar"
-import { cn } from "@/lib/utils"
 
-export function PageShell({ children, className }: { children: ReactNode; className?: string }) {
+export function PageShell({ children }: { children: ReactNode }) {
   return (
-    <div className={cn("overflow-x-clip", className)}>
+    <div className="overflow-x-clip">
       <AnnouncementBanner />
       <div className="relative">
         <Navbar />

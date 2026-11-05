@@ -36,7 +36,7 @@ export function HouseMembershipSection() {
               </p>
             </div>
             <p className="flex items-baseline gap-xs">
-              <span className="type-h4 font-sans font-medium text-text-primary">£19.99</span>
+              <span className="type-h4 font-medium text-text-primary">£19.99</span>
               <span className="type-md text-text-secondary">/ month</span>
             </p>
           </div>

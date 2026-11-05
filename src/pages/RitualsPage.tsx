@@ -8,8 +8,7 @@ import { RitualsHero } from "@/sections/rituals/RitualsHero"
 
 export default function RitualsPage() {
   return (
-    // Figma (THE MONARCO HOUSE): Inter for all copy, DM Sans for the headings inside the page and for prices.
-    <PageShell className="font-inter [&_main_:is(h1,h2,h3)]:font-sans">
+    <PageShell>
       <RitualsHero />
       <CollectionSection />
       <CaviarRitualSection />

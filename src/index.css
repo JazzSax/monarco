@@ -8,9 +8,10 @@
 }
 
 @theme inline {
-  --font-sans: "DM Sans Variable", "DM Sans", ui-sans-serif, system-ui, sans-serif;
-  /* THE MONARCO HOUSE file sets body copy in Inter (headings stay DM Sans). Used by the Rituals page. */
-  --font-inter: "Inter Variable", "Inter", ui-sans-serif, system-ui, sans-serif;
+  /* THE MONARCO HOUSE file: Paragraf and Caption styles are Inter, H1-H6 styles (headings, prices, scores) are DM Sans.
+     Each type-* utility below carries its font, so responsive switches like `type-h6 md:type-md` change font as Figma does. */
+  --font-sans: "Inter Variable", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "DM Sans Variable", "DM Sans", ui-sans-serif, system-ui, sans-serif;
 
   --color-surface-page: var(--surface-page);
   --color-surface-default: var(--surface-default);
@@ -89,16 +90,16 @@
   @media (prefers-reduced-motion: reduce) { animation: none; }
 }
 
-@utility type-h1 { font-size: var(--h1-size); line-height: var(--h1-line); }
-@utility type-h2 { font-size: var(--h2-size); line-height: var(--h2-line); }
-@utility type-h3 { font-size: var(--h3-size); line-height: var(--h3-line); }
-@utility type-h4 { font-size: var(--h4-size); line-height: var(--h4-line); }
-@utility type-h5 { font-size: var(--h5-size); line-height: var(--h5-line); }
-@utility type-h6 { font-size: var(--h6-size); line-height: var(--h6-line); }
-@utility type-lg { font-size: var(--p-large-size); line-height: var(--p-large-line); }
-@utility type-md { font-size: var(--p-medium-size); line-height: var(--p-medium-line); }
-@utility type-sm { font-size: var(--p-small-size); line-height: var(--p-small-line); }
-@utility type-caption { font-size: 12px; line-height: 16px; }
+@utility type-h1 { font-family: var(--font-display); font-size: var(--h1-size); line-height: var(--h1-line); }
+@utility type-h2 { font-family: var(--font-display); font-size: var(--h2-size); line-height: var(--h2-line); }
+@utility type-h3 { font-family: var(--font-display); font-size: var(--h3-size); line-height: var(--h3-line); }
+@utility type-h4 { font-family: var(--font-display); font-size: var(--h4-size); line-height: var(--h4-line); }
+@utility type-h5 { font-family: var(--font-display); font-size: var(--h5-size); line-height: var(--h5-line); }
+@utility type-h6 { font-family: var(--font-display); font-size: var(--h6-size); line-height: var(--h6-line); }
+@utility type-lg { font-family: var(--font-sans); font-size: var(--p-large-size); line-height: var(--p-large-line); }
+@utility type-md { font-family: var(--font-sans); font-size: var(--p-medium-size); line-height: var(--p-medium-line); }
+@utility type-sm { font-family: var(--font-sans); font-size: var(--p-small-size); line-height: var(--p-small-line); }
+@utility type-caption { font-family: var(--font-sans); font-size: 12px; line-height: 16px; }
 
 @layer base {
   html {

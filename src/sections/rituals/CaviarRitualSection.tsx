@@ -23,7 +23,7 @@ export function CaviarRitualSection() {
               <p className="type-lg text-text-secondary md:w-[408px]">A precision eye-care ritual, created for moments of intentional restoration.</p>
             </div>
             <div className="flex flex-col gap-2xs md:gap-xs">
-              <p className="type-h4 font-sans font-medium text-text-primary">£125</p>
+              <p className="type-h4 font-medium text-text-primary">£125</p>
               <p className="type-md text-text-secondary">Members Only / Limited Pre-Order Drop</p>
             </div>
           </div>
