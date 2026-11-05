@@ -47,5 +47,24 @@ assert.equal(fade, "dissolve")
 await page.getByRole("link", { name: "Monarco home" }).first().click()
 await page.waitForURL((url) => url.pathname.endsWith("/monarco/") || url.pathname.endsWith("/monarco"))
 
+// 6. Nav "Rituals" navigates to the Rituals page.
+await page.getByRole("link", { name: "Rituals", exact: true }).first().click()
+await page.waitForURL("**/rituals")
+await page.waitForFunction(() => document.querySelector("h1")?.textContent === "Recovery, Made Ritual")
+
+// 7. "Explore The Collection" scrolls to the collection (prototype: Scroll to).
+await page.getByRole("link", { name: "Explore The Collection" }).click()
+await page.waitForFunction(() => Math.abs(document.getElementById("collection").getBoundingClientRect().top) < 2)
+
+// 8. Ritual card hover: 1px Border/action stroke after the 200ms transition.
+const card = page.locator("#collection article").first()
+await card.hover()
+await page.waitForTimeout(300)
+assert.equal(await card.evaluate((el) => getComputedStyle(el).outlineColor), "rgb(201, 159, 84)")
+
+// 9. "Explore Membership" navigates to The House.
+await page.getByRole("link", { name: "Explore Membership" }).click()
+await page.waitForURL("**/the-house")
+
 await browser.close()
 console.log("prototype behaviours: all checks passed")

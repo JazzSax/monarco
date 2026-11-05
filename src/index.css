@@ -9,6 +9,8 @@
 
 @theme inline {
   --font-sans: "DM Sans Variable", "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  /* THE MONARCO HOUSE file sets body copy in Inter (headings stay DM Sans). Used by the Rituals page. */
+  --font-inter: "Inter Variable", "Inter", ui-sans-serif, system-ui, sans-serif;
 
   --color-surface-page: var(--surface-page);
   --color-surface-default: var(--surface-default);

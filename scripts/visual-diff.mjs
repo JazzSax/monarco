@@ -12,6 +12,7 @@ const filter = process.argv[2] ?? ""
 const CASES = [
   ["home", "/", [1440, 744, 390]],
   ["house", "/the-house", [1440, 744, 390]],
+  ["rituals", "/rituals", [1440, 744, 390]],
   ["nav", "/", [744, 390]], // menu open
 ]
 

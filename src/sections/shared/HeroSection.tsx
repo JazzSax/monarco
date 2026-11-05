@@ -14,7 +14,9 @@ export function HeroSection({
   actions,
   footer,
   copyClassName,
+  headClassName,
   bodyClassName,
+  imgClassName,
 }: {
   image: string
   video?: string
@@ -25,15 +27,18 @@ export function HeroSection({
   actions: ReactNode
   footer: ReactNode
   copyClassName?: string
+  /** Eyebrow + title group. */
+  headClassName?: string
   bodyClassName?: string
+  imgClassName?: string
 }) {
   return (
     <section className="relative flex h-[844px] flex-col justify-end overflow-hidden bg-surface-default py-section md:h-[980px] lg:justify-center lg:pt-[184px]">
-      <Backdrop src={image} video={video} overlay={overlay} />
+      <Backdrop src={image} video={video} overlay={overlay} imgClassName={imgClassName} />
       <Container className="flex flex-col gap-5xl md:gap-8xl">
         <div className="flex flex-col gap-3xl lg:gap-4xl">
           <div className={cn("flex w-[290px] flex-col gap-lg md:w-[338px] lg:w-[492px]", copyClassName)}>
-            <div className="flex flex-col gap-xs">
+            <div className={cn("flex flex-col gap-xs", headClassName)}>
               <Eyebrow tone="action">{eyebrow}</Eyebrow>
               <h1 className="type-h1 text-text-primary">{title}</h1>
             </div>

@@ -7,6 +7,7 @@ const COLUMNS = [
   { title: "Members", links: ["Begin My Read", "Sign In"] },
   { title: "Support", links: ["Contact", "FAQs", "Delivery & Return"] },
 ]
+const ROUTES: Record<string, string> = { "The House": "/the-house", Rituals: "/rituals" }
 const LEGAL = ["Privacy Policy", "Terms of Service", "Membership Terms", "Terms of Sale", "Cookie Policy", "Accessibility"]
 
 function Instagram() {
@@ -47,7 +48,7 @@ export function Footer() {
                 <ul>
                   {column.links.map((link) => (
                     <li key={link}>
-                      <Link to={link === "The House" ? "/the-house" : "#"} className="type-lg block py-xs md:type-sm lg:type-md">
+                      <Link to={ROUTES[link] ?? "#"} className="type-lg block py-xs md:type-sm lg:type-md">
                         {link}
                       </Link>
                     </li>

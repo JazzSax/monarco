@@ -10,7 +10,7 @@ import { cn } from "@/lib/utils"
 
 const LINKS = [
   { label: "The House", to: "/the-house" },
-  { label: "Rituals", to: "#" },
+  { label: "Rituals", to: "/rituals" },
   { label: "Solis", to: "#" },
   { label: "Our House", to: "#" },
   { label: "Men of Monarco", to: "#" },

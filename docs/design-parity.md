@@ -50,6 +50,30 @@ Prototype features checked and confirmed absent, so not built: sticky navigation
 
 For reference, The House page measures 2.93% / 6.32% / 8.16%, with its outliers (hero at 744 / 390, Members-only, closing section at 390) coming from the same image-crop limitation.
 
+## Rituals page
+
+Built 2026-11-05 from THE MONARCO HOUSE file (Rituals: Desktop `338:9925`, Tablet `639:350`, Mobile `724:354`), measured against its 2x frame exports in `design/baseline/rituals-*.png`. Layer CSS was read with *Copy as code → CSS (all layers)*; images come from the Drive "Rituals" folder.
+
+| Section | 1440 | 744 | 390 | Cause |
+|---|---|---|---|---|
+| Announcement banner | 2.2% | 4.7% | 2.8% | Shared component (sparkle icon, see Home). |
+| Hero | 0.6% | 2.6% | 2.3% | Matches. Tablet and mobile crops found by searching `object-position` against the baseline. |
+| Considered Essentials | 0.7% | 5.3% | 6.9% | Matches. At 390 one word of the intro wraps differently. |
+| The Eye Ritual (Caviar) | 0.5% | 8.5% | 11.1% | Background crop below desktop is approximate (same search). |
+| Formulation / Experience / Craftsmanship | 0.7% | 1.4% | 1.0% | Matches. |
+| More Than Access | 1.0% | 2.2% | 6.6% | Matches; mobile crop approximate. |
+| Built For Real Life / Understand First | **12.9%** | **17.1%** | **11.1%** | Both promo photos use Figma crop transforms the view-only seat does not expose; a position and zoom search did not get below ~22% per card, so they are left centred. |
+| Footer | 2.5% | 3.8% | 3.5% | Shared component. |
+| **Whole page** | **2.50%** | **6.34%** | **5.37%** | Page heights match Figma exactly. No horizontal overflow from 320 to 1920 px. |
+
+Prototype behaviour on this page: nav and footer "Rituals" → `/rituals`; "Explore The Collection" scrolls to the collection (native anchor); "Explore Membership" → The House; category and detail cards get a 1px `Border/action` stroke on hover. Other links on the page are unwired in the prototype and point to `#`. All of these are covered by `npm run check:prototype`.
+
+Page-specific decisions:
+
+1. **Inter for body copy.** This file sets all paragraph, label, nav and footer text in Inter (headings and prices stay DM Sans). The Rituals page applies that through `PageShell className`; Home and The House are unchanged and still DM Sans throughout, as in the older file they were built from. Inter is self-hosted with its optical-size axis (`@fontsource-variable/inter/opsz.css`), which is what makes line wraps match Figma.
+2. **Light Rituals image.** The Drive folder's red mask photo is a different shot from the one in the frame, so the card image is cropped from Figma's own Desktop export (`ritual-light.webp`, 656×492).
+3. **Copy reproduced as designed**, including "House Exlusive".
+
 ## Other known differences and decisions
 
 1. **Image crops.** The view-only Figma seat exposes image fills but not their crop or scale transforms. Original-resolution images were downloaded from the file and cropped with `object-position` / zoom tuned against the baselines. This is the largest remaining source of mismatch. An editor seat (or the Figma REST API with a token) would give the exact transforms.
@@ -58,7 +82,7 @@ For reference, The House page measures 2.93% / 6.32% / 8.16%, with its outliers 
 4. **Breakpoints.** Figma defines no viewport thresholds (Style Guide, section 08). The build switches at 744 px (tablet) and 1200 px (desktop). Pixel parity is only measurable at the three frame widths; between them the layout is fluid.
 5. **Nav Menu Open.** The Figma frame shows "The House" as active over the Home page. The build marks the current route as active instead.
 6. **Announcement close button.** No prototype interaction; the build dismisses the banner (addition).
-7. **Unwired links.** The prototype only wires links to The House and back. Rituals, Solis, Our House, Men of Monarco, Sign In, Begin My Read, footer support/legal links and social links point to `#`.
+7. **Unwired links.** The prototype only wires links to The House, Rituals and back. Solis, Our House, Men of Monarco, Sign In, Begin My Read, footer support/legal links and social links point to `#`.
 8. **Copy reproduced as designed**, including typos: "Begining", "depatch", "THE JONARCO HOUSE", "Discover Your Recover Index".
 9. **Contrast.** Token pairs that the Figma style guide itself flags as failing WCAG AA (for example `Text/on-action` on `Surface/action Secondary`, 2.70:1) are reproduced as designed.
 10. **Fonts.** DM Sans (variable, optical sizing) is self-hosted. Remaining text differences are renderer anti-aliasing and sub-pixel advance widths, which is why one or two lines wrap differently at 390 px.
